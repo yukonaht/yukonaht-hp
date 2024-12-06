@@ -1,0 +1,314 @@
+@import url("https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Klee+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap');
+
+* {
+    font-family: "M PLUS 1 Code", "Kiwi Maru", serif;
+}
+
+body {
+    margin: 0;
+    background-color: #cdcdcd;
+}
+
+header {
+    background-color: #b2ff75;
+    box-shadow: 0 5px 10px;
+}
+
+header ul {
+    padding: 0.5em 1em;
+    width: max-content;
+    margin: 0;
+    background-color: #ffbcc0;
+    border: none;
+    flex-wrap: wrap;
+}
+
+header ul a {
+    font-family: "Klee One", cursive;
+}
+
+header ul:hover {
+    background-color: #ffffff;
+}
+
+table {
+    border-spacing: 0;
+}
+
+ul {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 0.5em 0 0.5em 1.5em;
+    width: 20em;
+}
+
+ul p {
+    font-weight: bold;
+}
+
+ul li {
+    line-height: 1.5;
+    padding: 0.5em;
+}
+
+footer {
+    -webkit-box-sizing: border-box;
+    /* Webkit */
+    -moz-box-sizing: border-box;
+    /* Firefox */
+    box-sizing: border-box;
+    /* 標準 */
+    width: 100%;
+    padding: 1em 0;
+    box-shadow: 0 -5px 10px;
+    background-color: #b2ff75;
+}
+
+footer p {
+    display: block;
+    text-align: center;
+}
+
+a {
+    color: #ff3399;
+}
+
+a:hover {
+    color: #b2ff75;
+}
+
+a:active {
+    color: #ff3399;
+}
+
+label {
+    display: block;
+}
+
+label input {
+    display: inline-block;
+}
+
+.form input {
+    width: 10em;
+}
+
+.formContent table {
+    width: 100%;
+}
+
+.formContent th {
+    padding: 0.5em;
+    width: auto;
+    text-align: center;
+    background-color: #ffbcc0;
+}
+
+.formContent td {
+    padding: 0.5em;
+    text-align: center;
+    border: 1px solid #000000;
+}
+
+.diary-block {
+    padding: 1em;
+    display: flex;
+}
+
+.diary-block a {
+    display: flex;
+    color: #000000;
+    text-decoration: none;
+}
+
+.diary-block a:hover {
+    background: #ffffff;
+    opacity: 0.5;
+}
+
+.body {
+    margin: 50px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px 1px;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin: 0 20px 0 0;
+    border: 5px solid #ffbcc0;
+}
+
+#container {
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex a {
+    display: flex;
+    color: #000000;
+    text-decoration: none;
+}
+
+.flexbox {
+    display: flexbox;
+}
+
+.flex-column {
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.flex-column h2 {
+    margin: 10px 0;
+}
+
+.block * {
+    display: block;
+    padding: 0 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.block *:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+#block {
+    display: block;
+}
+
+.inline * {
+    display: inline;
+}
+
+.inline-block * {
+    display: inline-block;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.just {
+    box-sizing: border-box;
+    width: 80%;
+}
+
+.img-homepage {
+    padding: 10px;
+}
+
+.title-middle {
+    font-family: 'Kiwi Maru', sans-serif;
+    padding: 0px 20px;
+    margin: auto 40px 18px 0;
+}
+
+.thumbnail {
+    width: 10em;
+    height: auto;
+    border-radius: 10px;
+}
+
+.page-block {
+    background-color: #ffbcc0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.page-block a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.page-block:hover {
+    background-color: #ffbcc0;
+}
+
+.red {
+    color: #fc3535;
+}
+
+.not * {
+    text-decoration: none;
+    color: black;
+}
+
+.not *:hover {
+    color: black;
+    opacity: 0.5;
+}
+
+.youtube {
+    width: "336";
+    height: "189";
+    padding: 10px;
+    background-color: #b2ff75;
+}
+
+@media screen and (max-width: 720px) {
+
+    /* 720px以下に適用されるCSS（タブレット用） */
+    body {
+        width: 100%;
+    }
+
+    footer {
+        padding: 1em 0;
+    }
+
+    .page-block {
+        white-space: nowrap;
+    }
+
+    .body {
+        margin: 35px;
+        padding: 1.5em 2em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    /* 480px以下に適用されるCSS（スマホ用） */
+
+    * {
+        font-size-adjust: unset;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    footer {
+        padding: 1em 0;
+    }
+
+    .page-block {
+        white-space: nowrap;
+    }
+
+    .body {
+        margin: 20px;
+        padding: 1.5em 2em;
+    }
+
+    .diary-block {
+        font-size: smaller;
+        margin: 10px 0;
+    }
+
+    .youtube {
+        box-sizing: border-box;
+        width: 90%;
+        text-align: center;
+    }
+}
