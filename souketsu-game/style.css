@@ -1,19 +1,19 @@
 @font-face {
     font-family: 'Corporate Logo';
-    src: url("Corporate-Logo-Medium-ver3.otf");
+    src: url("fonts/Corporate-Logo-Medium-ver3.otf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Corporate Logo';
-    src: url("Corporate-Logo-Bold-ver3.otf");
+    src: url("fonts/Corporate-Logo-Bold-ver3.otf");
     font-weight: bold;
     font-style: normal;
 }
 
 * {
-    font-family: "Corporate Logo", sans-serif;
+    font-family: "Corporate Logo";
 }
 
 body {
