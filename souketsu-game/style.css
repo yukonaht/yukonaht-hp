@@ -21,6 +21,10 @@ body {
     max-width: 100%;
 }
 
+.upperLeft {
+    text-align: left;
+}
+
 .wrapper {
     display: flex;
     justify-content: center;
