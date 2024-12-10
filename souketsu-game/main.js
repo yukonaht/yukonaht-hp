@@ -15,7 +15,12 @@ function videoPlay(e) {
     });
 }
 
+
+
 function keyInput(e) {
     e.preventDefault();
-    let inputKey = e.
+    let inputKey = e.key;
+    if(inputKey === "a"){
+        console.log('aが入力されました');
+    };
 }
