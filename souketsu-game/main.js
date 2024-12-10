@@ -1,5 +1,7 @@
-document.getElementById("startScreen").innerHTML = `<h1>倉頡輸入法ゲーム</h1>
-            <button id="b1" value="1">スタート</button>`;
+document.getElementById("startScreen").innerHTML = `<div class="wrapper">
+            <h1>倉頡輸入法ゲーム</h1>
+            <button id="b1" value="1">スタート</button>
+        </div>`;
 const buttonID = document.getElementById("b1");
 buttonID.addEventListener("click", { name: buttonID.value, handleEvent: videoPlay });
 
