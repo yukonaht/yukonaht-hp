@@ -14,3 +14,8 @@ function videoPlay(e) {
         document.getElementById("v-stage").innerHTML = '';
     });
 }
+
+function keyInput(e) {
+    e.preventDefault();
+    let inputKey = e.
+}
