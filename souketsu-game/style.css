@@ -14,12 +14,14 @@
 
 * {
     font-family: "Corporate Logo";
+    background-color: #bbb;
 }
 
 body {
+    background-color: #fff;
     overflow: hidden;
-    min-width: 100svw;
-    min-height: 56svw;
+    width: 100svw;
+    height: 56svw;
 }
 
 .upperLeft {
@@ -30,7 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100svh;
+    height: 100svh;
     flex-direction: column;
 }
 
