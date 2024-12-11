@@ -15,12 +15,12 @@ function videoPlay(e) {
     });
 }
 
-addEventListener("keydown",keyInput);
+window.addEventListener("keydown", keyInput);
 
 function keyInput(e) {
     e.preventDefault();
     let inputKey = e.key;
-    if(inputKey === "a"){
+    if (inputKey === "a") {
         console.log('aが入力されました');
     };
 }
