@@ -19,8 +19,8 @@
 
 body {
     overflow: hidden;
-    width: 100svw;
-    height: calc((100svw / 16) * 9);
+    width: 100%;
+    height: calc((100% / 16) * 9);
 }
 
 body * {
