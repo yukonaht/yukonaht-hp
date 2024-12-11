@@ -19,12 +19,15 @@
 
 body {
     overflow: hidden;
-    width: 100%;
-    height: calc((100% / 16) * 9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
 }
 
-body * {
-    background-color: #fff;
+.mainScreen {
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }
 
 #startScreen {
