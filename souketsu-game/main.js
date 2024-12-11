@@ -15,7 +15,7 @@ function videoPlay(e) {
     });
 }
 
-window.addEventListener("keydown", keyInput);
+document.getElementById("i1").addEventListener("keydown", keyInput);
 
 function keyInput(e) {
     e.preventDefault();
