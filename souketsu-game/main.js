@@ -20,7 +20,59 @@ document.getElementById("i1").addEventListener("keydown", keyInput);
 function keyInput(e) {
     e.preventDefault();
     let inputKey = e.key;
-    if (inputKey === "a") {
-        console.log('aが入力されました');
+    let outputKey = "";
+    if (inputKey === "q") {
+        outputKey = "手";
+    } else if (inputKey === "w") {
+        outputKey = "田";
+    } else if (inputKey === "e") {
+        outputKey = "水";
+    } else if (inputKey === "r") {
+        outputKey = "口";
+    } else if (inputKey === "t") {
+        outputKey = "廿";
+    } else if (inputKey === "y") {
+        outputKey = "卜";
+    } else if (inputKey === "u") {
+        outputKey = "山";
+    } else if (inputKey === "i") {
+        outputKey = "戈";
+    } else if (inputKey === "o") {
+        outputKey = "人";
+    } else if (inputKey === "p") {
+        outputKey = "心";
+    } else if (inputKey === "a") {
+        outputKey = "日";
+    } else if (inputKey === "s") {
+        outputKey = "尸";
+    } else if (inputKey === "d") {
+        outputKey = "木";
+    } else if (inputKey === "f") {
+        outputKey = "火";
+    } else if (inputKey === "g") {
+        outputKey = "土";
+    } else if (inputKey === "h") {
+        outputKey = "竹";
+    } else if (inputKey === "j") {
+        outputKey = "十";
+    } else if (inputKey === "k") {
+        outputKey = "人";
+    } else if (inputKey === "l") {
+        outputKey = "中";
+    } else if (inputKey === "z") {
+        outputKey = "重";
+    } else if (inputKey === "x") {
+        outputKey = "難";
+    } else if (inputKey === "c") {
+        outputKey = "金";
+    } else if (inputKey === "v") {
+        outputKey = "女";
+    } else if (inputKey === "b") {
+        outputKey = "月";
+    } else if (inputKey === "n") {
+        outputKey = "弓";
+    } else if (inputKey === "m") {
+        outputKey = "一";
     };
+    console.log(outputKey);
 }
