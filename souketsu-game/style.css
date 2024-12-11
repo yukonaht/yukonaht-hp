@@ -20,7 +20,7 @@
 body {
     overflow: hidden;
     width: 100svw;
-    height: 56svw;
+    height: calc((100svw / 16) * 9);
 }
 
 body * {
