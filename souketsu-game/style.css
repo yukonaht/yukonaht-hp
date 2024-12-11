@@ -18,8 +18,8 @@
 
 body {
     overflow: hidden;
-    max-width: 100svw;
-    max-height: 56svw;
+    min-width: 100svw;
+    min-height: 56svw;
 }
 
 .upperLeft {
