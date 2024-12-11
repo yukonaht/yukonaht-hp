@@ -14,7 +14,6 @@
 
 * {
     font-family: "Corporate Logo";
-    background-color: #bbb;
     box-sizing: border-box;
 }
 
@@ -28,6 +27,10 @@ body * {
     background-color: #fff;
 }
 
+#startScreen {
+    height: 100%;
+}
+
 .upperLeft {
     text-align: left;
 }
@@ -36,7 +39,7 @@ body * {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100svh;
+    height: 100%;
     flex-direction: column;
 }
 
