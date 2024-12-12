@@ -1,10 +1,7 @@
-document.getElementById("startScreen").innerHTML = `<div class="wrapper">
-        <a href="../yukonaht-HP-home.html">←戻る</a>
-        <div class="center">
-            <h1>倉頡輸入法ゲーム</h1>
-            <button id="b1" value="1">スタート</button>
-        </div>
-        <span id="control"></span>
+document.getElementById("startScreen").innerHTML = `<a href="../yukonaht-HP-home.html" class="upperLeft">←戻る</a>
+     <div class="wrapper">
+        <h1>倉頡輸入法ゲーム</h1>
+        <button id="b1" value="1">スタート</button>
     </div>`;
 
 let buttonID = document.getElementById("b1");

@@ -39,31 +39,23 @@ body {
 
 .wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 100%;
-    flex-direction: row;
+    height: (100% - 2rem);
+    flex-direction: column;
 }
 
-.wrapper a {
+.wrapper h1 {
+    margin: 2rem;
+    font-size: 5rem;
+}
+
+.upperleft a {
     padding: 0.5rem;
     font-size: 1.5rem;
     background-color: #ccc;
     border-radius: 5px;
     text-decoration: none;
     color: #000;
-}
-
-.center {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-
-.center h1 {
-    margin: 2rem;
-    font-size: 5rem;
 }
 
 .control {
