@@ -1,5 +1,5 @@
 document.getElementById("startScreen").innerHTML = `<div class="wrapper">
-            <a href="../yukonaht-HP-home.html" class="upperLeft">←戻る</a>
+            <span class="upperLeft"><a href="../yukonaht-HP-home.html">←戻る</a></span>
             <h1>倉頡輸入法ゲーム</h1>
             <button id="b1" value="1">スタート</button>
         </div>`;
