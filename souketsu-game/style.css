@@ -37,6 +37,14 @@ body {
     height: 100%;
 }
 
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 1rem);
+    flex-direction: column;
+}
+
 .upperLeft {
     align-items: flex-start;
     justify-content: flex-start;
@@ -49,18 +57,11 @@ body {
     color: #000;
 }
 
-.wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100% - 1rem);
-    flex-direction: column;
-}
 
 .wrapper h1 {
     margin: 2rem;
     font-size: 5rem;
-}
+
 
 button {
     font-size: 2rem;
