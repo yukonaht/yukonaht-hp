@@ -33,7 +33,7 @@ body {
     aspect-ratio: 16 / 9;
 }
 
-.mainScreen *{
+.mainScreen>*{
     background-color: #fff;
 }
 
