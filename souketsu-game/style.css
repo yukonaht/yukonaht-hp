@@ -41,13 +41,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 1rem);
+    height: 100%;
     flex-direction: column;
 }
 
 .upperLeft {
-    align-self: flex-start;
-    justify-self: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
     text-align: left;
     padding: 0.5rem;
     font-size: 1.5rem;
