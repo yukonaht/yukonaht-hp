@@ -8,11 +8,14 @@ let buttonID = document.getElementById("b1");
 let videoID = buttonID.value;
 buttonID.addEventListener("click", videoPlay);
 
+let videoEndFlag = [];
+
 function videoPlay(e) {
     document.getElementById("startScreen").innerHTML = '';
     document.getElementById("v-stage").innerHTML = `<video src="videos/STAGE${videoID}.mp4" autoplay muted id="overlap"></video>`;
     document.getElementById("overlap").addEventListener("ended", () => {
         document.getElementById("v-stage").innerHTML = '';
+        videoEndFlag.push(videoID);
     });
 }
 
