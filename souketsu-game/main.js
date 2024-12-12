@@ -5,11 +5,12 @@ document.getElementById("startScreen").innerHTML = `<a href="../yukonaht-HP-home
         </div>`;
 
 let buttonID = document.getElementById("b1");
-buttonID.addEventListener("click", { name: buttonID.value, handleEvent: videoPlay });
+let videoID = buttonID.value;
+buttonID.addEventListener("click", videoPlay);
 
 function videoPlay(e) {
     document.getElementById("startScreen").innerHTML = '';
-    document.getElementById("v-stage").innerHTML = `<video src="videos/STAGE${this.name}.mp4" autoplay muted id="overlap"></video>`;
+    document.getElementById("v-stage").innerHTML = `<video src="videos/STAGE${videoID}.mp4" autoplay muted id="overlap"></video>`;
     document.getElementById("overlap").addEventListener("ended", () => {
         document.getElementById("v-stage").innerHTML = '';
     });
