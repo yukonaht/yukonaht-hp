@@ -1,8 +1,11 @@
 document.getElementById("startScreen").innerHTML = `<div class="wrapper">
-            <span class="upperLeft"><a href="../yukonaht-HP-home.html">←戻る</a></span>
+        <a href="../yukonaht-HP-home.html">←戻る</a>
+        <div class="center">
             <h1>倉頡輸入法ゲーム</h1>
             <button id="b1" value="1">スタート</button>
-        </div>`;
+        </div>
+        <span></span>
+    </div>`;
 
 let buttonID = document.getElementById("b1");
 let videoID = buttonID.value;
