@@ -27,6 +27,7 @@ body {
 }
 
 .mainScreen {
+    background-color: #fff;
     width: 100%;
     aspect-ratio: 16 / 9;
 }
@@ -37,6 +38,9 @@ body {
 
 .upperLeft {
     text-align: left;
+    margin: 1rem;
+    font-size: 1.5rem;
+    background-color: #ccc;
 }
 
 .wrapper {
