@@ -58,12 +58,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 
 .center h1 {
     margin: 2rem;
     font-size: 5rem;
+}
+
+.control {
+    width: 2rem;
 }
 
 button {
