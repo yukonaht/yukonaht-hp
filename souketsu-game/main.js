@@ -15,8 +15,6 @@ function videoPlay(e) {
     });
 }
 
-document.getElementById("i1").addEventListener("keydown", keyInput);
-
 function keyInput(e) {
     e.preventDefault();
     let inputKey = e.key;
