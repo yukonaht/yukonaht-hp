@@ -28,9 +28,12 @@ body {
 }
 
 .mainScreen {
-    background-color: #fff;
     width: 100%;
     aspect-ratio: 16 / 9;
+}
+
+.mainScreen *{
+    background-color: #fff;
 }
 
 #startScreen {
