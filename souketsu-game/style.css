@@ -48,7 +48,7 @@ body {
 .upperLeft {
     display: grid;
     align-self: flex-start;
-    text-align: left;
+    align-items: start;
 }
 
 .upperLeft a {
