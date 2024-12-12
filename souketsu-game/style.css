@@ -40,7 +40,7 @@ body {
 .wrapper {
     display: flex;
     align-items: center;
-    height: (100% - 2rem);
+    height: calc(100% - 2rem);
     flex-direction: column;
 }
 
