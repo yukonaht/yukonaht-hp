@@ -15,62 +15,64 @@ function videoPlay(e) {
     });
 }
 
-function keyInput(e) {
-    e.preventDefault();
-    let inputKey = e.key;
-    let outputKey = "";
-    if (inputKey === "q") {
-        outputKey = "手";
-    } else if (inputKey === "w") {
-        outputKey = "田";
-    } else if (inputKey === "e") {
-        outputKey = "水";
-    } else if (inputKey === "r") {
-        outputKey = "口";
-    } else if (inputKey === "t") {
-        outputKey = "廿";
-    } else if (inputKey === "y") {
-        outputKey = "卜";
-    } else if (inputKey === "u") {
-        outputKey = "山";
-    } else if (inputKey === "i") {
-        outputKey = "戈";
-    } else if (inputKey === "o") {
-        outputKey = "人";
-    } else if (inputKey === "p") {
-        outputKey = "心";
-    } else if (inputKey === "a") {
-        outputKey = "日";
-    } else if (inputKey === "s") {
-        outputKey = "尸";
-    } else if (inputKey === "d") {
-        outputKey = "木";
-    } else if (inputKey === "f") {
-        outputKey = "火";
-    } else if (inputKey === "g") {
-        outputKey = "土";
-    } else if (inputKey === "h") {
-        outputKey = "竹";
-    } else if (inputKey === "j") {
-        outputKey = "十";
-    } else if (inputKey === "k") {
-        outputKey = "人";
-    } else if (inputKey === "l") {
-        outputKey = "中";
-    } else if (inputKey === "z") {
-        outputKey = "重";
-    } else if (inputKey === "x") {
-        outputKey = "難";
-    } else if (inputKey === "c") {
-        outputKey = "金";
-    } else if (inputKey === "v") {
-        outputKey = "女";
-    } else if (inputKey === "b") {
-        outputKey = "月";
-    } else if (inputKey === "n") {
-        outputKey = "弓";
-    } else if (inputKey === "m") {
-        outputKey = "一";
-    };
-    console.log(outputKey);
+function keyInput() {
+    document.addEventListener("keydown", (e) => {
+        e.preventDefault();
+        let outputKey = "";
+        switch (e.key) {
+            case 'q':
+                outputKey = "手";
+            case 'w':
+                outputKey = "田";
+            case 'e':
+                outputKey = "水";
+            case 'r':
+                outputKey = "口";
+            case 't':
+                outputKey = "廿";
+            case 'y':
+                outputKey = "卜";
+            case 'u':
+                outputKey = "山";
+            case 'i':
+                outputKey = "戈";
+            case 'o':
+                outputKey = "人";
+            case 'p':
+                outputKey = "心";
+            case 'a':
+                outputKey = "日";
+            case 's':
+                outputKey = "尸";
+            case 'd':
+                outputKey = "木";
+            case 'f':
+                outputKey = "火";
+            case 'g':
+                outputKey = "土";
+            case 'h':
+                outputKey = "竹";
+            case 'j':
+                outputKey = "十";
+            case 'k':
+                outputKey = "大";
+            case 'l':
+                outputKey = "中";
+            case 'z':
+                outputKey = "重";
+            case 'x':
+                outputKey = "難";
+            case 'c':
+                outputKey = "金";
+            case 'v':
+                outputKey = "女";
+            case 'b':
+                outputKey = "月";
+            case 'n':
+                outputKey = "弓";
+            case 'm':
+                outputKey = "一";
+        }
+    });
+    return outputKey;
 }
