@@ -76,3 +76,19 @@ button {
     top: 0;
     left: 0;
 }
+
+.quizArea {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#question {
+    font-size: 4rem;
+}
+
+#textArea {
+    font-size: 2rem;
+    letter-spacing: 1rem;
+}

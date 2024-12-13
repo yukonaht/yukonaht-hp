@@ -1,3 +1,7 @@
+const primaryFirst = [
+  {question: "一", answer: "m"}
+];
+
 document.getElementById("startScreen").innerHTML = `<a href="../yukonaht-HP-home.html" class="upperLeft">←戻る</a>
     <div class="wrapper">
         <h1>倉頡輸入法ゲーム</h1>
@@ -9,6 +13,7 @@ let videoID = buttonID.value;
 buttonID.addEventListener("click", videoPlay);
 
 let videoEndFlag = [];
+let inputText = "";
 
 function videoPlay(e) {
     document.getElementById("startScreen").innerHTML = '';
@@ -17,6 +22,11 @@ function videoPlay(e) {
         document.getElementById("v-stage").innerHTML = '';
         videoEndFlag.push(videoID);
     });
+}
+
+if (videoEndFlag.includes(1)) {
+    inputText += keyInput();
+    outputText(inputText)
 }
 
 function keyInput() {
@@ -76,7 +86,15 @@ function keyInput() {
                 outputKey = "弓";
             case 'm':
                 outputKey = "一";
-        }
+        };
     });
     return outputKey;
+}
+
+function outputQuestion(text) {
+    document.getElementById("question").innerHTML = text;
+}
+
+function outputText(text) {
+    document.getElementById("textArea").innerHTML = text;
 }
