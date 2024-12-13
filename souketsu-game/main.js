@@ -1,5 +1,5 @@
 const primaryFirst = [
-  {question: "一", answer: "m"}
+    { question: "一", answer: "m" }
 ];
 
 document.getElementById("startScreen").innerHTML = `<a href="../yukonaht-HP-home.html" class="upperLeft">←戻る</a>
@@ -25,8 +25,11 @@ function videoPlay(e) {
 }
 
 if (videoEndFlag.includes(1)) {
-    inputText += keyInput();
-    outputText(inputText)
+    while (inputText.length() = 5) {
+        inputText += keyInput();
+        outputQuestion(primaryFirst[])
+        outputText(inputText)
+    };
 }
 
 function keyInput() {
