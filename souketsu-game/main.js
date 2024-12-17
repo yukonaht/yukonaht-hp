@@ -19,8 +19,7 @@ buttonID.addEventListener("click", videoPlay);
 let inputText = "";
 
 outputQuestion(primaryFirst[0].question);
-outputText(keyInput);
-
+outputText(keyInput());
 
 function videoPlay() {
     document.getElementById("startScreen").innerHTML = '';
