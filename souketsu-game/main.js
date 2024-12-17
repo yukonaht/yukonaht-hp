@@ -2,6 +2,10 @@ const primaryFirst = [
     { question: "一", answer: "m" }
 ];
 
+let videoEndFlag = [];
+let timeLimit = 30;
+let answerResult;
+
 document.getElementById("startScreen").innerHTML = `<a href="../yukonaht-HP-home.html" class="upperLeft">←戻る</a>
     <div class="wrapper">
         <h1>倉頡輸入法ゲーム</h1>
@@ -12,24 +16,16 @@ let buttonID = document.getElementById("b1");
 let videoID = buttonID.value;
 buttonID.addEventListener("click", videoPlay);
 
-let videoEndFlag = [];
 let inputText = "";
 
-function videoPlay(e) {
+
+function videoPlay() {
     document.getElementById("startScreen").innerHTML = '';
     document.getElementById("v-stage").innerHTML = `<video src="videos/STAGE${videoID}.mp4" autoplay muted id="overlap"></video>`;
     document.getElementById("overlap").addEventListener("ended", () => {
         document.getElementById("v-stage").innerHTML = '';
         videoEndFlag.push(videoID);
     });
-}
-
-if (videoEndFlag.includes(1)) {
-    while (inputText.length() = 5) {
-        inputText += keyInput();
-        outputQuestion(primaryFirst[0].question)
-        outputText(inputText)
-    };
 }
 
 function keyInput() {
@@ -94,10 +90,29 @@ function keyInput() {
     return outputKey;
 }
 
+function questionDisplay(index) {
+    while (timeLimit === 0 || answerResult === true) {
+        if (videoEndFlag.includes(1)) {
+            inputText += keyInput();
+            outputQuestion(primaryFirst[questionIndex].question);
+            outputText(inputText);
+            answerResult = answerJudge(keyInput, index);
+        };
+    };
+}
+
 function outputQuestion(text) {
     document.getElementById("question").innerHTML = text;
 }
 
 function outputText(text) {
     document.getElementById("textArea").innerHTML = text;
+}
+
+function answerJudge(answer, index) {
+    if (answer === primaryFirst[index].answer) {
+        return true;
+    } else {
+        return false;
+    };
 }

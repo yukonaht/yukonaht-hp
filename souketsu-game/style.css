@@ -58,6 +58,8 @@ body {
     border-radius: 5px;
     text-decoration: none;
     color: #000;
+    top: 2rem;
+    left: 2rem;
 }
 
 button {
