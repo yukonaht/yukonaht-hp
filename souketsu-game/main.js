@@ -27,7 +27,7 @@ function videoPlay(e) {
 if (videoEndFlag.includes(1)) {
     while (inputText.length() = 5) {
         inputText += keyInput();
-        outputQuestion(primaryFirst[])
+        outputQuestion(primaryFirst[0].question)
         outputText(inputText)
     };
 }
