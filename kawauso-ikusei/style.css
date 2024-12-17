@@ -6,3 +6,24 @@
 * {
     font-family: "Best Ten Dot";
 }
+
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    background-color: #222;
+    color: #eee;
+}
+
+.h1Furigana {
+    font-size: 0.8rem;
+}
+
+h1 {
+    margin: 0;
+}
