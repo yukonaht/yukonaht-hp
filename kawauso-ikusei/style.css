@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Best Ten Dot';
+    src: url("fonts/BestTen-DOT.ttf");
+}
+
+* {
+    font-family: "Best Ten Dot";
+}
