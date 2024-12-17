@@ -18,6 +18,8 @@ buttonID.addEventListener("click", videoPlay);
 
 let inputText = "";
 
+questionDisplay(0);
+
 
 function videoPlay() {
     document.getElementById("startScreen").innerHTML = '';
