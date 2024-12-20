@@ -27,3 +27,18 @@ header {
 h1 {
     margin: 0;
 }
+
+main {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    background-color: #eee;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #222;
+    color: #eee;
+}
