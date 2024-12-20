@@ -4,8 +4,10 @@ let powerCount = true;
 let playerName = document.getElementById("name").value;
 
 if (playerName === "") {
-    document.getElementById("name").value = Math.floor(Math.random * 10000);
-};
+    document.getElementById("name").value = String(Math.floor(Math.random * 10000));
+} else {
+    document.getElementById("name").value = String()
+}
 
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
@@ -19,6 +21,10 @@ let timeInterval = setInterval(() => {
 
 document.getElementById("save").addEventListener("click",() => {
     localStorage.setItem(playerName, otterpower);
+});
+
+document.getElementById("road").addEventListener("click",() => {
+    otterpower = localStorage.getItem(document.getElementById("name").value);
 });
 
 function formatDate(date) {
