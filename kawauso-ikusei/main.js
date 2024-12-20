@@ -1,10 +1,17 @@
 let time = 0;
+let otterpower = 0;
+let powerCount = true;
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
+    document.getElementById("powerValue").innerHTML = otterpower;
     time++;
 }, 1);
 
-
+while(powerCount) {
+    if(time === 5000) {
+        otterpower++;
+    }
+}
 
 
 /**
