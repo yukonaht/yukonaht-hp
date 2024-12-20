@@ -8,13 +8,10 @@ let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
     document.getElementById("powerValue").innerHTML = localStorage.getItem(document.getElementById("name").value);
     time++;
-}, 1);
-
-while(powerCount) {
     if(time === 5000) {
         otterpower++;
     }
-}
+}, 1);
 
 document.getElementById("save").addEventListener("click",() => {
     localStorage.setItem(document.getElementById("name").value, otterpower);
