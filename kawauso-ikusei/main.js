@@ -1,12 +1,12 @@
 let time = 0;
-let otterpower = 0;
+let otterpower = localStorage.getItem(document.getElementById("name").value);
 let powerCount = true;
 
 localStorage.setItem(document.getElementById("name").value, otterpower);
 
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
-    document.getElementById("powerValue").innerHTML = localStorage.getItem(document.getElementById("name").value);
+    document.getElementById("powerValue").innerHTML = otterpower;
     time++;
     if(time === 5000) {
         otterpower++;
