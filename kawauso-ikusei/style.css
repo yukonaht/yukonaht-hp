@@ -35,6 +35,13 @@ main {
     background-color: #eee;
 }
 
+.content-blocks {
+    margin: 1rem;
+    border: #222 2px solid;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
 footer {
     display: flex;
     align-items: center;
