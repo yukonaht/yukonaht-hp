@@ -4,10 +4,8 @@ let powerCount = true;
 let playerName = document.getElementById("name").value;
 
 if (playerName === "") {
-    document.getElementById("name").value = 
+    document.getElementById("name").value = Math.floor(Math.random * 10000);
 };
-
-localStorage.setItem(playerName, otterpower);
 
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
@@ -20,7 +18,7 @@ let timeInterval = setInterval(() => {
 }, 1);
 
 document.getElementById("save").addEventListener("click",() => {
-    localStorage.setItem(document.getElementById("name").value, otterpower);
+    localStorage.setItem(playerName, otterpower);
 });
 
 function formatDate(date) {
