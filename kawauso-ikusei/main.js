@@ -1,8 +1,13 @@
 let time = 0;
 let otterpower = localStorage.getItem(document.getElementById("name").value);
 let powerCount = true;
+let playerName = document.getElementById("name").value;
 
-localStorage.setItem(document.getElementById("name").value, otterpower);
+if (playerName === "") {
+    document.getElementById("name").value = 
+};
+
+localStorage.setItem(playerName, otterpower);
 
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
