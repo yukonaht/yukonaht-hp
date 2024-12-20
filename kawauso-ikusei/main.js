@@ -10,6 +10,7 @@ let timeInterval = setInterval(() => {
     time++;
     if(time === 5000) {
         otterpower++;
+        time = 0;
     }
 }, 1);
 
