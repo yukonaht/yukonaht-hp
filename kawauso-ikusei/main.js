@@ -1,9 +1,12 @@
 let time = 0;
 let otterpower = 0;
 let powerCount = true;
+
+localStorage.setItem(document.getElementById("name").value, otterpower);
+
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
-    document.getElementById("powerValue").innerHTML = otterpower;
+    document.getElementById("powerValue").innerHTML = localStorage.getItem(document.getElementById("name").value);
     time++;
 }, 1);
 
@@ -13,6 +16,14 @@ while(powerCount) {
     }
 }
 
+document.getElementById("save").addEventListener("click",() => {
+    localStorage.setItem(document.getElementById("name").value, otterpower);
+});
+
+function formatDate(date) {
+    const pad = (num) => String(num).padStart(2, '0');
+    return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+}
 
 /**
  * 条件が揃ったら resolve 関数を走らせる。
