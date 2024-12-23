@@ -5,6 +5,8 @@ let powerCount = true;
 let playerName = document.getElementById("name").value;
 let requidedTime4Power = 5000;
 let powerIncrementFlag = false;
+let playerDataJSON = {};
+let importPlayerData = {};
 
 
 //もしプレイヤー名が空だったら名前を"playerxxx"にする
@@ -26,6 +28,16 @@ let timeInterval = setInterval(() => {
     document.getElementById("powerValue").innerHTML = otterpower;
 }, 1);
 
+let dataInterval = setInterval(() => {
+    let playerData = {
+        name: playerName,
+        power: otterpower,
+        powerIncrementFlag: powerIncrementFlag
+    };
+    playerDataJSON = JSON.stringify(playerData);
+    importPlayerData = JSON.parse(localStorage.getItem(playerName))
+},1);
+
 document.getElementById("powerIncrement").addEventListener("click", () =>{
     if(otterpower >= 10) {
         otterpower -= 10;
@@ -36,16 +48,14 @@ document.getElementById("powerIncrement").addEventListener("click", () =>{
     }
 });
 
-
 //セーブ
 document.getElementById("save").addEventListener("click",() => {
-    localStorage.setItem(document.getElementById("name").value, otterpower);
+    localStorage.setItem(playerName, localStorage.setItem(playerName, playerDataJSON));
 });
-
 
 //ロード
 document.getElementById("road").addEventListener("click",() => {
-    otterpower = localStorage.getItem(document.getElementById("name").value);
+    otterpower = importPlayerData.power;
 });
 
 
