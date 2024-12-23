@@ -1,34 +1,63 @@
+//変数を定義する場所
 let time = 0;
 let otterpower = localStorage.getItem(document.getElementById("name").value);
 let powerCount = true;
 let playerName = document.getElementById("name").value;
+let requidedTime4Power = 5000;
+let powerIncrementFlag = false;
 
+
+//もしプレイヤー名が空だったら名前を"playerxxx"にする
 if (playerName === "") {
     document.getElementById("name").value = "player" + Math.floor(Math.random() * 1000);
+    otterpower = 10;
 };
 
+
+//時間を動かす
+//獺パウワァの増減
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
-    document.getElementById("powerValue").innerHTML = otterpower;
     time++;
-    if(time === 5000) {
+    if(time === requidedTime4Power && powerIncrementFlag) {
         otterpower++;
         time = 0;
     }
+    document.getElementById("powerValue").innerHTML = otterpower;
 }, 1);
 
+document.getElementById("powerIncrement").addEventListener("click", () =>{
+    if(otterpower >= 10) {
+        otterpower -= 10;
+        powerIncrementFlag = true;
+        alert('購入しました');
+    } else {
+        alert('パウワァが足りません！！');
+    }
+});
+
+
+//セーブ
 document.getElementById("save").addEventListener("click",() => {
     localStorage.setItem(document.getElementById("name").value, otterpower);
 });
 
+
+//ロード
 document.getElementById("road").addEventListener("click",() => {
     otterpower = localStorage.getItem(document.getElementById("name").value);
 });
 
+
+//日付をyy/mm/dd hh:mm:ssにする
 function formatDate(date) {
     const pad = (num) => String(num).padStart(2, '0');
     return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 }
+
+
+
+//↓↓一旦置いておく場所
 
 /**
  * 条件が揃ったら resolve 関数を走らせる。
