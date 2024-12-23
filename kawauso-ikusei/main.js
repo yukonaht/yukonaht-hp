@@ -5,9 +5,7 @@ let playerName = document.getElementById("name").value;
 
 if (playerName === "") {
     document.getElementById("name").value = String(Math.floor(Math.random * 10000));
-} else {
-    document.getElementById("name").value = String()
-}
+};
 
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
@@ -20,7 +18,7 @@ let timeInterval = setInterval(() => {
 }, 1);
 
 document.getElementById("save").addEventListener("click",() => {
-    localStorage.setItem(playerName, otterpower);
+    localStorage.setItem(document.getElementById("name").value, otterpower);
 });
 
 document.getElementById("road").addEventListener("click",() => {
