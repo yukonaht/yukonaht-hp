@@ -4,7 +4,7 @@ let powerCount = true;
 let playerName = document.getElementById("name").value;
 
 if (playerName === "") {
-    document.getElementById("name").value = String(Math.floor(Math.random * 10000));
+    document.getElementById("name").value = "player" + Math.floor(Math.random() * 1000);
 };
 
 let timeInterval = setInterval(() => {
