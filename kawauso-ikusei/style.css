@@ -1,14 +1,14 @@
 @font-face {
     font-family: 'Best Ten Dot';
-    src: url("fonts/BestTen-DOT.ttf");
+    src: url("fonts/BestTen-DOT.ttf")
 }
 
 * {
-    font-family: "Best Ten Dot";
+    font-family: "Best Ten Dot"
 }
 
 body {
-    margin: 0;
+    margin: 0
 }
 
 header {
@@ -17,29 +17,29 @@ header {
     flex-direction: column;
     margin: 0;
     background-color: #222;
-    color: #eee;
+    color: #eee
 }
 
-.h1Furigana {
-    font-size: 0.8rem;
+.header__h1Furigana {
+    font-size: .8rem
 }
 
 h1 {
-    margin: 0;
+    margin: 0
 }
 
 main {
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    background-color: #eee;
+    background-color: #eee
 }
 
-.content-blocks {
+.main__contentBlocks {
     margin: 1rem;
     border: #222 4px solid;
     border-radius: 2rem;
-    padding: 1rem;
+    padding: 1rem
 }
 
 footer {
@@ -47,5 +47,17 @@ footer {
     align-items: center;
     flex-direction: column;
     background-color: #222;
-    color: #eee;
+    color: #eee
+}
+
+button {
+    padding: .5rem;
+    border-radius: 3px;
+    border: #222;
+    background-color: #eee;
+    margin: .5rem
+}
+
+button:hover {
+    opacity: 50%
 }
