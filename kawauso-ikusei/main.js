@@ -6,7 +6,8 @@ let powerIncrementFlag = false;
 let requidedTime4Power = 5000;
 
 // startScreen表示
-document.getElementById("startScreen").innerHTML = `<div class="main__startScreen">
+document.getElementById("startScreen").innerHTML =
+            `<div class="main__startScreen">
                 <div class="main__startScreen__content">
                     <h2>名前を入力</h2>
                     <p>ゲームに入ったことがある場合は同じ名前を入力することで読み込むことができます</p>
@@ -17,7 +18,8 @@ document.getElementById("startScreen").innerHTML = `<div class="main__startScree
             </div>`;
 // もしプレイヤー名が空だったら名前を"playerxxxx"にする
 if (playerName === "") {
-    document.getElementById("name").value = "player" + Math.floor(Math.random() * 10000);
+    document.getElementById("name").value = "player" + Math.floor(Math.random() *
+        10000);
 };
 
 let stopLoop = false;
@@ -25,12 +27,15 @@ let stopLoop = false;
 document.getElementById("nameSend").addEventListener("click", () => {
     stopLoop = true;
     document.getElementById("startScreen").innerHTML = "";
-    if (importPlayerData.power !== "" && importPlayerData.powerIncrementFlag !== "") {
+    if (importPlayerData.power !== "" && importPlayerData.powerIncrementFlag !==
+        "") {
         otterpower = importPlayerData.power;
         powerIncrementFlag = importPlayerData.powerIncrementFlag;
+        alert('データあるよ');
     } else {
         otterpower = 10;
         powerIncrementFlag = false;
+        alert('データないよ');
     }
     document.getElementById("name").value = playerName;
 })
@@ -92,7 +97,8 @@ document.getElementById("powerIncrement").addEventListener("click", () => {
 
 // セーブ
 document.getElementById("save").addEventListener("click", () => {
-    localStorage.setItem(playerName, localStorage.setItem(playerName, playerDataJSON));
+    localStorage.setItem(playerName, localStorage.setItem(playerName,
+        playerDataJSON));
 });
 
 // ロード
@@ -105,9 +111,9 @@ document.getElementById("road").addEventListener("click", () => {
 // 日付をyy/mm/dd hh:mm:ssにする
 function formatDate(date) {
     const pad = (num) => String(num).padStart(2, '0');
-    return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+    return
+    `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 }
-
 
 
 // ↓↓一旦置いておく場所
@@ -120,7 +126,8 @@ function formatDate(date) {
  * @param {Function} resolve 条件が揃ったら走る関数
  * @param {Number} intervalMillSecond ポーリング間隔ミリ秒
  */
-function waitAsync(conditionCallback, nonresolve, resolve, intervalMillSecond = 100) {
+function waitAsync(conditionCallback, nonresolve, resolve, intervalMillSecond =
+    100) {
     if (conditionCallback()) {
         // 待つまでもなく成立しているパターン用
         resolve();
