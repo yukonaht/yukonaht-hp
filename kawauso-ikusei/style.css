@@ -23,12 +23,12 @@ body {
     align-items: center;
 }
 
-.main__startScreen_content {
+.main__startScreen__content {
     align-items: center;
 }
 
-.main__startScreen_content h2,
-.main__startScreen_content p {
+.main__startScreen__content h2,
+.main__startScreen__content p {
     color: #fff;
     font-weight: bold;
 }
