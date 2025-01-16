@@ -1,13 +1,11 @@
-//変数を定義する場所
+// 変数を定義する場所
 let time = 0;
-let otterpower = localStorage.getItem(document.getElementById("name").value);
-let powerCount = true;
-let playerName = document.getElementById("name").value;
-let requidedTime4Power = 5000;
+let otterpower = 0;
+let playerName = "";
 let powerIncrementFlag = false;
-let playerDataJSON = {};
-let importPlayerData = {};
+let requidedTime4Power = 5000;
 
+// startScreen表示
 document.getElementById("startScreen").innerHTML = `<div class="main__startScreen">
                 <div class="main__startScreen__content">
                     <h2>名前を入力</h2>
@@ -15,17 +13,26 @@ document.getElementById("startScreen").innerHTML = `<div class="main__startScree
                     <input type="text" name="" id="name" />
                     <button id="road">完了</button>
                 </div>
-            </div>`
-
-//もしプレイヤー名が空だったら名前を"playerxxx"にする
+            </div>`;
+// もしプレイヤー名が空だったら名前を"playerxxxx"にする
 if (playerName === "") {
-    document.getElementById("name").value = "player" + Math.floor(Math.random() * 1000);
+    document.getElementById("name").value = "player" + Math.floor(Math.random() * 10000);
     otterpower = 10;
 };
 
+let stopLoop = false;
 
-//時間を動かす
-//獺パウワァの増減
+while(!stopLoop){
+    document.getElementById("road").addEventListener("click", () => {
+        document.getElementById("startScreen").innerHTML = "";
+        stopLoop = true;
+        otterpower = importPlayerData.power;
+        powerIncrementFlag = importPlayerData.powerIncrementFlag;
+    })
+};
+
+// 時間を動かす
+// 獺パウワァの増減
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
     time++;
@@ -36,9 +43,13 @@ let timeInterval = setInterval(() => {
     document.getElementById("powerValue").innerHTML = otterpower;
 }, 1);
 
+// プレーヤーデータ作成・読み込み
+
+let playerDataJSON = {};
+let importPlayerData = {};
+
 let dataInterval = setInterval(() => {
     let playerData = {
-        name: playerName,
         power: otterpower,
         powerIncrementFlag: powerIncrementFlag
     };
@@ -46,6 +57,7 @@ let dataInterval = setInterval(() => {
     importPlayerData = JSON.parse(localStorage.getItem(playerName))
 },1);
 
+// 獺パウワァを増やすフラグ購入
 document.getElementById("powerIncrement").addEventListener("click", () =>{
     if(otterpower >= 10) {
         otterpower -= 10;
@@ -56,18 +68,19 @@ document.getElementById("powerIncrement").addEventListener("click", () =>{
     }
 });
 
-//セーブ
+// セーブ
 document.getElementById("save").addEventListener("click",() => {
     localStorage.setItem(playerName, localStorage.setItem(playerName, playerDataJSON));
 });
 
-//ロード
+// ロード
 document.getElementById("road").addEventListener("click",() => {
     otterpower = importPlayerData.power;
+    powerIncrementFlag = importPlayerData.powerIncrementFlag;
 });
 
 
-//日付をyy/mm/dd hh:mm:ssにする
+// 日付をyy/mm/dd hh:mm:ssにする
 function formatDate(date) {
     const pad = (num) => String(num).padStart(2, '0');
     return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
@@ -75,7 +88,7 @@ function formatDate(date) {
 
 
 
-//↓↓一旦置いておく場所
+// ↓↓一旦置いておく場所
 
 /**
  * 条件が揃ったら resolve 関数を走らせる。
