@@ -23,6 +23,10 @@ body {
     align-items: center;
 }
 
+.main__startScreen_content {
+    align-items: center;
+}
+
 .main__startScreen_content h2,
 .main__startScreen_content p {
     color: white;

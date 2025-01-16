@@ -18,7 +18,6 @@ document.getElementById("startScreen").innerHTML = `<div class="main__startScree
 // もしプレイヤー名が空だったら名前を"playerxxxx"にする
 if (playerName === "") {
     document.getElementById("name").value = "player" + Math.floor(Math.random() * 10000);
-    otterpower = 10;
 };
 
 let stopLoop = false;
@@ -26,12 +25,18 @@ let stopLoop = false;
 document.getElementById("nameSend").addEventListener("click", () => {
     stopLoop = true;
     document.getElementById("startScreen").innerHTML = "";
-    otterpower = importPlayerData.power;
-    powerIncrementFlag = importPlayerData.powerIncrementFlag;
+    if (importPlayerData.power !== "" && importPlayerData.powerIncrementFlag !== "") {
+        otterpower = importPlayerData.power;
+        powerIncrementFlag = importPlayerData.powerIncrementFlag;
+    } else {
+        otterpower = 10;
+        powerIncrementFlag = false;
+    }
+    document.getElementById("name").value = playerName;
 })
 
 async function loopUntilButtonPress() {
-    while(!stopLoop){
+    while (!stopLoop) {
         await new Promise(resolve => setTimeout(resolve, 500))
     };
 }
@@ -39,19 +44,27 @@ async function loopUntilButtonPress() {
 loopUntilButtonPress();
 
 // 時間を動かす
-// 獺パウワァの増減
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
     time++;
-    if(time === requidedTime4Power && powerIncrementFlag) {
+    if (time === requidedTime4Power && powerIncrementFlag) {
         otterpower++;
         time = 0;
     }
     document.getElementById("powerValue").innerHTML = otterpower;
 }, 1);
 
-// プレーヤーデータ作成・読み込み
+// 獺パウワァの増減
+let powerInterval = setInterval(() => {
+    time++;
+    if (time === requidedTime4Power && powerIncrementFlag) {
+        otterpower++;
+        time = 0;
+    }
+    document.getElementById("powerValue").innerHTML = otterpower;
+}, 1)
 
+// プレーヤーデータ作成・読み込み
 let playerDataJSON = {};
 let importPlayerData = {};
 
@@ -62,11 +75,13 @@ let dataInterval = setInterval(() => {
     };
     playerDataJSON = JSON.stringify(playerData);
     importPlayerData = JSON.parse(localStorage.getItem(playerName))
-},1);
+}, 1);
+
+//
 
 // 獺パウワァを増やすフラグ購入
-document.getElementById("powerIncrement").addEventListener("click", () =>{
-    if(otterpower >= 10) {
+document.getElementById("powerIncrement").addEventListener("click", () => {
+    if (otterpower >= 10) {
         otterpower -= 10;
         powerIncrementFlag = true;
         alert('購入しました');
@@ -76,12 +91,12 @@ document.getElementById("powerIncrement").addEventListener("click", () =>{
 });
 
 // セーブ
-document.getElementById("save").addEventListener("click",() => {
+document.getElementById("save").addEventListener("click", () => {
     localStorage.setItem(playerName, localStorage.setItem(playerName, playerDataJSON));
 });
 
 // ロード
-document.getElementById("road").addEventListener("click",() => {
+document.getElementById("road").addEventListener("click", () => {
     otterpower = importPlayerData.power;
     powerIncrementFlag = importPlayerData.powerIncrementFlag;
 });
