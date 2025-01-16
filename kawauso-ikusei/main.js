@@ -29,6 +29,7 @@ while(!stopLoop){
         otterpower = importPlayerData.power;
         powerIncrementFlag = importPlayerData.powerIncrementFlag;
     })
+    await new Promise(resolve => setTimeout(resolve, 500);)
 };
 
 // 時間を動かす
