@@ -23,6 +23,12 @@ body {
     align-items: center;
 }
 
+.main__startScreen_content h2,
+.main__startScreen_content p {
+    color: white;
+    font-weight: bold;
+}
+
 header {
     display: flex;
     align-items: center;
