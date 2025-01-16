@@ -10,7 +10,7 @@ let dataImport = false;
 
 // startScreen表示
 document.getElementById("startScreen").innerHTML =
-            `<div class="main__startScreen">
+    `<div class="main__startScreen">
                 <div class="main__startScreen__content">
                     <h2>名前を入力</h2>
                     <p>ゲームに入ったことがある場合は同じ名前を入力することで読み込むことができます</p>
@@ -64,13 +64,13 @@ let powerInterval = setInterval(() => {
 
 // プレーヤーデータ作成・読み込み
 let dataInterval = setInterval(() => {
-    if(playerName !== ""){
+    if (playerName !== "") {
         let playerData = {
-        power: otterpower,
-        powerIncrementFlag: powerIncrementFlag
-    };
-    playerDataJSON = JSON.stringify(playerData);
-    importPlayerData = JSON.parse(localStorage.getItem(playerName))
+            power: otterpower,
+            powerIncrementFlag: powerIncrementFlag
+        };
+        playerDataJSON = JSON.stringify(playerData);
+        importPlayerData = JSON.parse(localStorage.getItem(playerName))
     }
 }, 1);
 
@@ -78,13 +78,18 @@ let dataInterval = setInterval(() => {
 
 // 獺パウワァを増やすフラグ購入
 document.getElementById("powerIncrement").addEventListener("click", () => {
-    if (otterpower >= 10) {
+    if (otterpower >= 10 && powerIncrementFlag === false) {
         otterpower -= 10;
         powerIncrementFlag = true;
         alert('購入しました');
+        document.getElementById("powerIncrement").innerHTML =
+            `<p>獺パウワァを時間経過で増やす</p>
+            <button>購入済み</button>`;
+    } else if (powerIncrementFlag === false) {
+        alert('パウワァが足りません');
     } else {
-        alert('パウワァが足りません！！');
-    }
+        alert('購入済みです');
+    };
 });
 
 // セーブ
