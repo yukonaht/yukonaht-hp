@@ -22,15 +22,20 @@ if (playerName === "") {
 
 let stopLoop = false;
 
-while(!stopLoop){
-    document.getElementById("road").addEventListener("click", () => {
-        document.getElementById("startScreen").innerHTML = "";
-        stopLoop = true;
-        otterpower = importPlayerData.power;
-        powerIncrementFlag = importPlayerData.powerIncrementFlag;
-    })
-    await new Promise(resolve => setTimeout(resolve, 500);)
-};
+document.getElementById("nameSend").addEventListener("click", () => {
+    stopLoop = true;
+    document.getElementById("startScreen").innerHTML = "";
+    otterpower = importPlayerData.power;
+    powerIncrementFlag = importPlayerData.powerIncrementFlag;
+})
+
+async function loopUntilButtonPress() {
+    while(!stopLoop){
+        await new Promise(resolve => setTimeout(resolve, 500))
+    };
+}
+
+loopUntilButtonPress();
 
 // 時間を動かす
 // 獺パウワァの増減
