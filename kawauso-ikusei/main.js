@@ -4,6 +4,8 @@ let otterpower = 0;
 let playerName = "";
 let powerIncrementFlag = false;
 let requidedTime4Power = 5000;
+let playerDataJSON = {};
+let importPlayerData = {};
 
 // startScreen表示
 document.getElementById("startScreen").innerHTML =
@@ -17,10 +19,7 @@ document.getElementById("startScreen").innerHTML =
                 </div>
             </div>`;
 // もしプレイヤー名が空だったら名前を"playerxxxx"にする
-if (playerName === "") {
-    document.getElementById("name").value = "player" + Math.floor(Math.random() *
-        10000);
-};
+document.getElementById("name").value = "player" + Math.floor(Math.random() * 10000);
 
 let stopLoop = false;
 
@@ -70,16 +69,15 @@ let powerInterval = setInterval(() => {
 }, 1)
 
 // プレーヤーデータ作成・読み込み
-let playerDataJSON = {};
-let importPlayerData = {};
-
 let dataInterval = setInterval(() => {
-    let playerData = {
+    if(playerData !== ""){
+        let playerData = {
         power: otterpower,
         powerIncrementFlag: powerIncrementFlag
     };
     playerDataJSON = JSON.stringify(playerData);
     importPlayerData = JSON.parse(localStorage.getItem(playerName))
+    }
 }, 1);
 
 //
