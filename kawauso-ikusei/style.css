@@ -75,7 +75,7 @@ footer {
 button {
     padding: .5rem;
     border-radius: 3px;
-    border: #222;
+    border: 1px solid #222;
     background-color: #eee;
     margin: .5rem
 }
