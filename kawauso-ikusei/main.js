@@ -103,8 +103,7 @@ document.getElementById("road").addEventListener("click", () => {
 // 日付をyy/mm/dd hh:mm:ssにする
 function formatDate(date) {
     const pad = (num) => String(num).padStart(2, '0');
-    return
-    `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+    return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 }
 
 
