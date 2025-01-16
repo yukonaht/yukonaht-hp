@@ -50,12 +50,6 @@ loopUntilButtonPress();
 // 時間を動かす
 let timeInterval = setInterval(() => {
     document.getElementById("time").innerHTML = formatDate(new Date());
-    time++;
-    if (time === requidedTime4Power && powerIncrementFlag) {
-        otterpower++;
-        time = 0;
-    }
-    document.getElementById("powerValue").innerHTML = otterpower;
 }, 1);
 
 // 獺パウワァの増減
@@ -70,7 +64,7 @@ let powerInterval = setInterval(() => {
 
 // プレーヤーデータ作成・読み込み
 let dataInterval = setInterval(() => {
-    if(playerData !== ""){
+    if(playerName !== ""){
         let playerData = {
         power: otterpower,
         powerIncrementFlag: powerIncrementFlag
