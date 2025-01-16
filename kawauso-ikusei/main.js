@@ -8,6 +8,14 @@ let powerIncrementFlag = false;
 let playerDataJSON = {};
 let importPlayerData = {};
 
+document.getElementById("startScreen").innerHTML = `<div class="main__startScreen">
+                <div class="main__startScreen__content">
+                    <h2>名前を入力</h2>
+                    <p>ゲームに入ったことがある場合は同じ名前を入力することで読み込むことができます</p>
+                    <input type="text" name="" id="name" />
+                    <button id="road">完了</button>
+                </div>
+            </div>`
 
 //もしプレイヤー名が空だったら名前を"playerxxx"にする
 if (playerName === "") {

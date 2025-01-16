@@ -11,6 +11,18 @@ body {
     margin: 0
 }
 
+.main__startScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 背景を暗くする（透明度調整可能） */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 header {
     display: flex;
     align-items: center;
