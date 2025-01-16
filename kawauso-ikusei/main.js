@@ -6,6 +6,7 @@ let powerIncrementFlag = false;
 let requidedTime4Power = 5000;
 let playerDataJSON = {};
 let importPlayerData = {};
+let dataImport = false;
 
 // startScreen表示
 document.getElementById("startScreen").innerHTML =
@@ -26,8 +27,7 @@ let stopLoop = false;
 document.getElementById("nameSend").addEventListener("click", () => {
     stopLoop = true;
     document.getElementById("startScreen").innerHTML = "";
-    if (importPlayerData.power !== "" && importPlayerData.powerIncrementFlag !==
-        "") {
+    if (localStorage.hasOwnProperty(playerName)) {
         otterpower = importPlayerData.power;
         powerIncrementFlag = importPlayerData.powerIncrementFlag;
         alert('データあるよ');
