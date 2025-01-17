@@ -51,7 +51,7 @@ loopUntilButtonPress();
 // 繰り返し処理の並列処理
 async function repeatTasks() {
     const promises = [
-        timeset(),
+        timeSet(),
         powerIncrement(),
         playerDataSet()
     ];
