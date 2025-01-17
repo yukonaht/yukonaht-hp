@@ -47,9 +47,7 @@ async function loopUntilButtonPress() {
 
 loopUntilButtonPress();
 
-function wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+repeatTasks();
 
 // 繰り返し処理の並列処理
 async function repeatTasks() {
