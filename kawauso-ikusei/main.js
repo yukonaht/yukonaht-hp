@@ -34,6 +34,7 @@ document.getElementById("nameSend").addEventListener("click", () => {
         powerIncrementFlag = false;
     }
     document.getElementById("name").value = playerName;
+    repeatTasks();
 })
 
 /**
@@ -46,8 +47,6 @@ async function loopUntilButtonPress() {
 }
 
 loopUntilButtonPress();
-
-repeatTasks();
 
 // 繰り返し処理の並列処理
 async function repeatTasks() {
