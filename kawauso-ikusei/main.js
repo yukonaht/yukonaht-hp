@@ -52,9 +52,9 @@ repeatTasks();
 // 繰り返し処理の並列処理
 async function repeatTasks() {
     const result = await Promise.all([
-       timeSet(),
+        timeSet(),
         powerIncrement(),
-        playerDataSet() 
+        playerDataSet()
     ]);
 }
 
@@ -63,6 +63,7 @@ async function repeatTasks() {
 async function timeSet() {
     while (true) {
         document.getElementById("time").innerHTML = formatDate(new Date());
+        await new Promise(resolve => setTimeout(resolve, 10));
     }
 }
 
@@ -89,6 +90,7 @@ async function playerDataSet() {
             playerDataJSON = JSON.stringify(playerData);
             importPlayerData = JSON.parse(localStorage.getItem(playerName))
         };
+        await new Promise(resolve => setTimeout(resolve, 10));
     };
 }
 
