@@ -53,42 +53,45 @@ function wait(ms) {
 
 // 繰り返し処理の並列処理
 async function repeatTasks() {
-    const promises = [
-        timeSet(),
+    const result = await Promise.all([
+       timeSet(),
         powerIncrement(),
-        playerDataSet()
-    ];
-
-    await Promise.allSettled(promises);
+        playerDataSet() 
+    ]);
 }
 
-let addIncrement = setInterval(repeatTasks, 1)
 
 // 時間を動かす
 async function timeSet() {
-    document.getElementById("time").innerHTML = formatDate(new Date());
+    while (true) {
+        document.getElementById("time").innerHTML = formatDate(new Date());
+    }
 }
 
 // 獺パウワァの増減
 async function powerIncrement() {
-    await wait(5000);
-    if (powerIncrementFlag) {
-        otterpower++;
-        console.log(otterpower);
-    };
-    document.getElementById("powerValue").innerHTML = otterpower;
+    while (true) {
+        await wait(5000);
+        if (powerIncrementFlag) {
+            otterpower++;
+            console.log(otterpower);
+        };
+        document.getElementById("powerValue").innerHTML = otterpower;
+    }
 }
 
 // プレーヤーデータ作成・読み込み
 async function playerDataSet() {
-    if (playerName !== "") {
-        let playerData = {
-            power: otterpower,
-            powerIncrementFlag: powerIncrementFlag
+    while (true) {
+        if (playerName !== "") {
+            let playerData = {
+                power: otterpower,
+                powerIncrementFlag: powerIncrementFlag
+            };
+            playerDataJSON = JSON.stringify(playerData);
+            importPlayerData = JSON.parse(localStorage.getItem(playerName))
         };
-        playerDataJSON = JSON.stringify(playerData);
-        importPlayerData = JSON.parse(localStorage.getItem(playerName))
-    }
+    };
 }
 
 // 獺パウワァを増やすフラグ購入
