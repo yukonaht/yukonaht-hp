@@ -56,9 +56,7 @@ async function repeatTasks() {
         playerDataSet()
     ];
     
-    const result = await Promise.allSettled(promises);
-
-    console.log(result);
+    await Promise.allSettled(promises);
 }
 
 let addIncrement = setInterval(repeatTasks, 1)
