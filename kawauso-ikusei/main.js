@@ -30,11 +30,9 @@ document.getElementById("nameSend").addEventListener("click", () => {
     if (localStorage.hasOwnProperty(playerName)) {
         otterpower = importPlayerData.power;
         powerIncrementFlag = importPlayerData.powerIncrementFlag;
-        alert('データあるよ');
     } else {
         otterpower = 10;
         powerIncrementFlag = false;
-        alert('データないよ');
     }
     document.getElementById("name").value = playerName;
 })
@@ -105,7 +103,11 @@ document.getElementById("road").addEventListener("click", () => {
 });
 
 
-// 日付をyy/mm/dd hh:mm:ssにする
+/**
+ * 日付をyy/mm/dd hh:mm:ssにフォーマットする
+ * @param {Date} date フォーマットさせる日付
+ * @returns フォーマット済みの日付
+ */
 function formatDate(date) {
     const pad = (num) => String(num).padStart(2, '0');
     return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
