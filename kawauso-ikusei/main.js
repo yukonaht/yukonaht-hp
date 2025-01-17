@@ -47,6 +47,10 @@ async function loopUntilButtonPress() {
 
 loopUntilButtonPress();
 
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // 繰り返し処理の並列処理
 async function repeatTasks() {
     const promises = [
@@ -54,7 +58,7 @@ async function repeatTasks() {
         powerIncrement(),
         playerDataSet()
     ];
-    
+
     await Promise.allSettled(promises);
 }
 
@@ -67,8 +71,7 @@ async function timeSet() {
 
 // 獺パウワァの増減
 async function powerIncrement() {
-    setTimeout(() => {}, 5000);
-    
+    await wait(5000);
     if (powerIncrementFlag) {
         otterpower++;
         console.log(otterpower);
