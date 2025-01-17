@@ -61,10 +61,11 @@ async function repeatTasks() {
     console.log(result);
 }
 
+let addIncrement = setInterval(repeatTasks, 1)
+
 // 時間を動かす
 async function timeSet() {
     document.getElementById("time").innerHTML = formatDate(new Date());
-    await new Promise(resolve => setTimeout(resolve, 1));
 }
 
 // 獺パウワァの増減
@@ -75,7 +76,6 @@ async function powerIncrement() {
         time = 0;
     }
     document.getElementById("powerValue").innerHTML = otterpower;
-    await new Promise(resolve => setTimeout(resolve, 1));
 }
 
 // プレーヤーデータ作成・読み込み
@@ -88,7 +88,6 @@ async function playerDataSet() {
         playerDataJSON = JSON.stringify(playerData);
         importPlayerData = JSON.parse(localStorage.getItem(playerName))
     }
-    await new Promise(resolve => setTimeout(resolve, 1));
 }
 
 // 獺パウワァを増やすフラグ購入
