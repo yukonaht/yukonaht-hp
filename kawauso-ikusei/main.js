@@ -72,11 +72,11 @@ async function powerIncrement() {
     if (time === requidedTime4Power && powerIncrementFlag) {
         otterpower++;
         time = 0;
+        console.log(otterpower);
     }
     document.getElementById("powerValue").innerHTML = otterpower;
     
     console.log(time);
-    console.log(otterpower);
 }
 
 // プレーヤーデータ作成・読み込み
