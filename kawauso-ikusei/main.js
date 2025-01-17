@@ -63,7 +63,7 @@ async function repeatTasks() {
 async function timeSet() {
     while (true) {
         document.getElementById("time").innerHTML = formatDate(new Date());
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise(resolve => setTimeout(resolve, 1000));
     }
 }
 
@@ -90,7 +90,7 @@ async function playerDataSet() {
             playerDataJSON = JSON.stringify(playerData);
             importPlayerData = JSON.parse(localStorage.getItem(playerName))
         };
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise(resolve => setTimeout(resolve, 1000));
     };
 }
 
