@@ -37,6 +37,9 @@ document.getElementById("nameSend").addEventListener("click", () => {
     document.getElementById("name").value = playerName;
 })
 
+/**
+ * 
+ */
 async function loopUntilButtonPress() {
     while (!stopLoop) {
         await new Promise(resolve => setTimeout(resolve, 500))
@@ -45,23 +48,38 @@ async function loopUntilButtonPress() {
 
 loopUntilButtonPress();
 
+// 繰り返し処理の並列処理
+async function repeatTasks() {
+    const promises = [
+        timeset(),
+        powerIncrement(),
+        playerDataSet()
+    ];
+    
+    const result = await Promise.allSettled(promises);
+
+    console.log(result);
+}
+
 // 時間を動かす
-let timeInterval = setInterval(() => {
+async function timeSet() {
     document.getElementById("time").innerHTML = formatDate(new Date());
-}, 1);
+    await new Promise(resolve => setTimeout(resolve, 1));
+}
 
 // 獺パウワァの増減
-let powerInterval = setInterval(() => {
+async function powerIncrement() {
     time++;
     if (time === requidedTime4Power && powerIncrementFlag) {
         otterpower++;
         time = 0;
     }
     document.getElementById("powerValue").innerHTML = otterpower;
-}, 1)
+    await new Promise(resolve => setTimeout(resolve, 1));
+}
 
 // プレーヤーデータ作成・読み込み
-let dataInterval = setInterval(() => {
+async function playerDataSet() {
     if (playerName !== "") {
         let playerData = {
             power: otterpower,
@@ -70,9 +88,8 @@ let dataInterval = setInterval(() => {
         playerDataJSON = JSON.stringify(playerData);
         importPlayerData = JSON.parse(localStorage.getItem(playerName))
     }
-}, 1);
-
-//
+    await new Promise(resolve => setTimeout(resolve, 1));
+}
 
 // 獺パウワァを増やすフラグ購入
 document.getElementById("powerIncrement").addEventListener("click", () => {
