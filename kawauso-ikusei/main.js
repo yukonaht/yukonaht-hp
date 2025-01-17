@@ -69,7 +69,7 @@ async function timeSet() {
 // 獺パウワァの増減
 async function powerIncrement() {
     while (true) {
-        await wait(5000);
+        await new Promise(resolve => setTimeout(resolve, 5000));
         if (powerIncrementFlag) {
             otterpower++;
             console.log(otterpower);
