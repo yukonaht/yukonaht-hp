@@ -74,6 +74,9 @@ async function powerIncrement() {
         time = 0;
     }
     document.getElementById("powerValue").innerHTML = otterpower;
+    
+    console.log(time);
+    console.log(otterpower);
 }
 
 // プレーヤーデータ作成・読み込み
