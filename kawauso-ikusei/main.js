@@ -1,5 +1,4 @@
 // 変数を定義する場所
-let time = 0;
 let otterpower = 0;
 let playerName = "";
 let powerIncrementFlag = false;
@@ -68,15 +67,13 @@ async function timeSet() {
 
 // 獺パウワァの増減
 async function powerIncrement() {
-    time++;
-    if (time === requidedTime4Power && powerIncrementFlag) {
-        otterpower++;
-        time = 0;
-        console.log(otterpower);
-    }
-    document.getElementById("powerValue").innerHTML = otterpower;
+    await new Promise(resolve => setTimeout(resolve, 5000));
     
-    console.log(time);
+    if (powerIncrementFlag) {
+        otterpower++;
+        console.log(otterpower);
+    };
+    document.getElementById("powerValue").innerHTML = otterpower;
 }
 
 // プレーヤーデータ作成・読み込み
