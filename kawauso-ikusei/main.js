@@ -62,19 +62,19 @@ async function repeatTasks() {
 async function timeSet() {
     while (true) {
         document.getElementById("time").innerHTML = formatDate(new Date());
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 10));
     }
 }
 
 // 獺パウワァの増減
 async function powerIncrement() {
     while (true) {
+        document.getElementById("powerValue").innerHTML = otterpower;
         await new Promise(resolve => setTimeout(resolve, 5000));
         if (powerIncrementFlag) {
             otterpower++;
             console.log(otterpower);
         };
-        document.getElementById("powerValue").innerHTML = otterpower;
     }
 }
 
@@ -89,7 +89,7 @@ async function playerDataSet() {
             playerDataJSON = JSON.stringify(playerData);
             importPlayerData = JSON.parse(localStorage.getItem(playerName))
         };
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 10));
     };
 }
 
