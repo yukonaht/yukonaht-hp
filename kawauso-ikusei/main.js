@@ -73,7 +73,6 @@ async function powerIncrement() {
         await new Promise(resolve => setTimeout(resolve, 5000));
         if (powerIncrementFlag) {
             otterpower++;
-            console.log(otterpower);
         };
     }
 }
@@ -102,6 +101,7 @@ document.getElementById("powerIncrement").addEventListener("click", () => {
         document.getElementById("powerIncrement").innerHTML =
             `<p>獺パウワァを時間経過で増やす</p>
             <button>購入済み</button>`;
+        document.getElementById("powerValue").innerHTML = otterpower;
     } else if (powerIncrementFlag === false) {
         alert('パウワァが足りません');
     } else {
