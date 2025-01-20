@@ -19,7 +19,12 @@ document.getElementById("startScreen").innerHTML =
                 </div>
             </div>`;
 // もしプレイヤー名が空だったら名前を"playerxxxx"にする
-document.getElementById("name").value = "player" + Math.floor(Math.random() * 10000);
+playerName = Math.floor(Math.random() * 10000);
+while (playerName.length < 4) {
+    playerName = "0" + playerName;
+}
+playerName = "player" + playerName;
+document.getElementById("name").value = playerName
 
 let stopLoop = false;
 

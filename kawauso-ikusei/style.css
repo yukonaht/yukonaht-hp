@@ -17,14 +17,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* 背景を暗くする（透明度調整可能） */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* 背景を暗くする（透明度調整可能） */
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.main__startScreen__content {
-    align-items: center;
+    padding: 1rem;
 }
 
 .main__startScreen__content h2,
@@ -72,13 +70,18 @@ footer {
     background-color: #222;
     color: #eee;
     padding: 3rem;
-    box-sizing: border-box;
 }
 
-header, 
-main, 
+header,
+main,
 footer {
     padding: 1rem 2rem;
+    flex-wrap: wrap;
+}
+
+.main__contentBlocks,
+footer button {
+    white-space: nowrap;
 }
 
 button {
@@ -93,12 +96,25 @@ button:hover {
     opacity: 50%
 }
 
-@media screen and (max-width: 959px){
-
-}
+@media screen and (max-width: 959px) {}
 
 @media screen and (max-width: 480px) {
-    .main__startScreen__content {
-        font-size: 0.5rem;
+    .main__startScreen {
+        font-size: 0.8rem;
+    }
+
+    header,
+    main,
+    footer {
+        padding: 1rem 2rem;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .main__contentBlocks {
+        width: calc(100% - 2rem);
+        box-sizing: border-box;
     }
 }
