@@ -3,8 +3,9 @@
     src: url("fonts/BestTen-DOT.ttf")
 }
 
-* {
-    font-family: "Best Ten Dot"
+html {
+    font-family: "Best Ten Dot";
+    padding: 4rem;
 }
 
 body {
@@ -85,4 +86,14 @@ button {
 
 button:hover {
     opacity: 50%
+}
+
+@media screen and (max-width: 959px){
+
+}
+
+@media screen and (max-width: 480px) {
+    .main__startScreen__content {
+        font-size: 0.5rem;
+    }
 }
