@@ -67,9 +67,12 @@ main {
 footer {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     background-color: #222;
-    color: #eee
+    color: #eee;
+    padding: 3rem;
+    box-sizing: border-box;
 }
 
 button {
