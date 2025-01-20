@@ -3,13 +3,9 @@
     src: url("fonts/BestTen-DOT.ttf")
 }
 
-html {
-    font-family: "Best Ten Dot";
-    padding: 4rem;
-}
-
 body {
-    margin: 0
+    margin: 0;
+    font-family: "Best Ten Dot";
 }
 
 .main__startScreen {
@@ -74,6 +70,12 @@ footer {
     color: #eee;
     padding: 3rem;
     box-sizing: border-box;
+}
+
+header, 
+main, 
+footer {
+    padding: 1rem 2rem;
 }
 
 button {
