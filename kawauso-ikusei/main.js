@@ -101,7 +101,8 @@ document.getElementById("powerIncrement").addEventListener("click", () => {
         alert('購入しました');
         document.getElementById("powerIncrement").innerHTML =
             `<p>獺パウワァを時間経過で増やす</p>
-            <button>購入済み</button>`;
+            <button class="clicked">購入済み</button>`;
+        document.getElementById("powerValue").innerHTML = otterpower;
     } else if (powerIncrementFlag === false) {
         alert('パウワァが足りません');
     } else {

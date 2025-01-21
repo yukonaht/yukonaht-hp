@@ -17,10 +17,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* 背景を暗くする（透明度調整可能） */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* 背景を暗くする（透明度調整可能） */
+    padding: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .main__startScreen__content {
@@ -64,6 +67,12 @@ main {
     padding: 1rem
 }
 
+button.clicked {
+    background-color: #222;
+    color: #eee;
+    border: 1px solid #eee;
+}
+
 footer {
     display: flex;
     align-items: center;
@@ -77,7 +86,7 @@ button {
     border-radius: 3px;
     border: 1px solid #222;
     background-color: #eee;
-    margin: .5rem
+    margin: .2rem
 }
 
 button:hover {
