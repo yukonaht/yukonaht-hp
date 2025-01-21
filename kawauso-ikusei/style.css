@@ -1,14 +1,18 @@
 @font-face {
-    font-family: 'Best Ten Dot';
-    src: url("fonts/BestTen-DOT.ttf")
+    font-family: 'Madou Futo Maru Goshic';
+    src: url("fonts/madoufmg.ttf")
 }
 
 * {
-    font-family: "Best Ten Dot";
+    font-family: "Madou Futo Maru Goshic";
 }
 
-body {
+body,
+html {
     margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .main__startScreen {
@@ -23,6 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    z-index: 2000;
 }
 
 .main__startScreen__content h2,
@@ -31,13 +36,25 @@ body {
     font-weight: bold;
 }
 
+.main__startScreen__content button {
+    margin: 1rem 0;
+}
+
 header {
+    position: fixed;
+    top: 0;
+    /* 上部に固定 */
+    left: 0;
+    width: 100%;
+    height: 25%;
+    z-index: 1000;
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 0;
     background-color: #222;
-    color: #eee
+    color: #eee;
+    justify-content: center;
 }
 
 .header__h1Furigana {
@@ -49,10 +66,14 @@ h1 {
 }
 
 main {
+    height: 100%;
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    background-color: #eee
+    background-color: #eee;
+    padding: 20% 2rem 10% 2rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .main__contentBlocks {
@@ -69,14 +90,20 @@ footer {
     justify-content: center;
     background-color: #222;
     color: #eee;
-    padding: 3rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    z-index: 1000;
+    justify-content: center;
 }
 
 header,
-main,
 footer {
     padding: 1rem 2rem;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .main__contentBlocks,
