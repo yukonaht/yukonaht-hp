@@ -26,14 +26,16 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 3rem;
     z-index: 2000;
+    box-sizing: border-box;
 }
 
 .main__startScreen__content h2,
 .main__startScreen__content p {
     color: #fff;
     font-weight: bold;
+    text-wrap: wrap;
 }
 
 .main__startScreen__content button {

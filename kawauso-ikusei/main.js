@@ -7,6 +7,10 @@ let playerDataJSON = {};
 let importPlayerData = {};
 let dataImport = false;
 
+function device() {
+    return /iPad/.test(navigator.userAgent) ? "tablet" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "mobile" : "desktop";
+}
+
 // startScreen表示
 document.getElementById("startScreen").innerHTML =
     `<div class="main__startScreen">
