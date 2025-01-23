@@ -7,9 +7,20 @@ let playerDataJSON = {};
 let importPlayerData = {};
 let dataImport = false;
 
-function device() {
-    return /iPad/.test(navigator.userAgent) ? "tablet" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "mobile" : "desktop";
-}
+// 端末の傾きを検知する
+window.addEventListener("orientationchange", () => {
+    // 端末の傾きを絶対値で取得する
+    var direction = Math.abs(window.orientation);
+    if (direction == 90) {
+        `<div class="main__startScreen">
+                <div class="main__startScreen__content">
+                    <h2>画面を横向きにしてください</h2>
+                    <video src="rotation-smartphone.mp4" autoplay loop></video>
+                </div>
+            </div>`
+    }
+});
+
 
 // startScreen表示
 document.getElementById("startScreen").innerHTML =
