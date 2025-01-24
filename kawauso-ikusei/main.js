@@ -12,7 +12,8 @@ window.addEventListener("orientationchange", () => {
     // 端末の傾きを絶対値で取得する
     var direction = Math.abs(window.orientation);
     if (direction == 90) {
-        `<div class="main__startScreen">
+        document.getElementById("startScreen").innerHTML =
+            `<div class="main__startScreen">
                 <div class="main__startScreen__content">
                     <h2>画面を横向きにしてください</h2>
                     <video src="rotation-smartphone.mp4" autoplay loop></video>
