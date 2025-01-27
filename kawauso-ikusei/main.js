@@ -2,9 +2,6 @@
 let otterpower = 0;
 let playerName = "";
 let powerIncrementFlag = false;
-let requidedTime4Power = 5000;
-let playerDataJSON = {};
-let importPlayerData = {};
 let dataImport = false;
 
 // 端末の傾きを検知する
@@ -102,12 +99,12 @@ async function powerIncrement() {
 async function playerDataSet() {
     while (true) {
         if (playerName !== "") {
-            let playerData = {
+            const playerData = {
                 power: otterpower,
                 powerIncrementFlag: powerIncrementFlag
             };
-            playerDataJSON = JSON.stringify(playerData);
-            importPlayerData = JSON.parse(localStorage.getItem(playerName))
+            const playerDataJSON = JSON.stringify(playerData);
+            const importPlayerData = JSON.parse(localStorage.getItem(playerName))
         };
         await new Promise(resolve => setTimeout(resolve, 10));
     };
@@ -132,8 +129,7 @@ document.getElementById("powerIncrement").addEventListener("click", () => {
 
 // セーブ
 document.getElementById("save").addEventListener("click", () => {
-    localStorage.setItem(playerName, localStorage.setItem(playerName,
-        playerDataJSON));
+    localStorage.setItem(playerName, localStorage.setItem(playerName, playerDataJSON));
 });
 
 // ロード
