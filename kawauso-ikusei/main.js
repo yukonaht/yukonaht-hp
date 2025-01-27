@@ -3,6 +3,9 @@ let otterpower = 0;
 let playerName = "";
 let powerIncrementFlag = false;
 let dataImport = false;
+let playerData ;
+let playerDataJSON;
+let importPlayerData;
 
 // 端末の傾きを検知する
 window.addEventListener("orientationchange", () => {
@@ -99,12 +102,12 @@ async function powerIncrement() {
 async function playerDataSet() {
     while (true) {
         if (playerName !== "") {
-            const playerData = {
+            playerData = {
                 power: otterpower,
                 powerIncrementFlag: powerIncrementFlag
             };
-            const playerDataJSON = JSON.stringify(playerData);
-            const importPlayerData = JSON.parse(localStorage.getItem(playerName))
+            playerDataJSON = JSON.stringify(playerData);
+            importPlayerData = JSON.parse(localStorage.getItem(playerName))
         };
         await new Promise(resolve => setTimeout(resolve, 10));
     };
