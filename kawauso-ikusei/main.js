@@ -2,10 +2,26 @@
 let otterpower = 0;
 let playerName = "";
 let powerIncrementFlag = false;
-let requidedTime4Power = 5000;
-let playerDataJSON = {};
-let importPlayerData = {};
 let dataImport = false;
+let playerData ;
+let playerDataJSON;
+let importPlayerData;
+
+// 端末の傾きを検知する
+window.addEventListener("orientationchange", () => {
+    // 端末の傾きを絶対値で取得する
+    var direction = Math.abs(window.orientation);
+    if (direction == 90) {
+        document.getElementById("startScreen").innerHTML =
+            `<div class="main__startScreen">
+                <div class="main__startScreen__content">
+                    <h2>画面を横向きにしてください</h2>
+                    <video src="rotation-smartphone.mp4" autoplay loop></video>
+                </div>
+            </div>`
+    }
+});
+
 
 // startScreen表示
 document.getElementById("startScreen").innerHTML =
@@ -19,7 +35,12 @@ document.getElementById("startScreen").innerHTML =
                 </div>
             </div>`;
 // もしプレイヤー名が空だったら名前を"playerxxxx"にする
-document.getElementById("name").value = "player" + Math.floor(Math.random() * 10000);
+playerName = Math.floor(Math.random() * 10000);
+while (playerName.length < 4) {
+    playerName = "0" + playerName;
+}
+playerName = "player" + playerName;
+document.getElementById("name").value = playerName
 
 let stopLoop = false;
 
@@ -73,7 +94,6 @@ async function powerIncrement() {
         await new Promise(resolve => setTimeout(resolve, 5000));
         if (powerIncrementFlag) {
             otterpower++;
-            console.log(otterpower);
         };
     }
 }
@@ -82,7 +102,7 @@ async function powerIncrement() {
 async function playerDataSet() {
     while (true) {
         if (playerName !== "") {
-            let playerData = {
+            playerData = {
                 power: otterpower,
                 powerIncrementFlag: powerIncrementFlag
             };
@@ -101,7 +121,11 @@ document.getElementById("powerIncrement").addEventListener("click", () => {
         alert('購入しました');
         document.getElementById("powerIncrement").innerHTML =
             `<p>獺パウワァを時間経過で増やす</p>
+<<<<<<< HEAD
             <button class="clicked">購入済み</button>`;
+=======
+            <button>購入済み</button>`;
+>>>>>>> 675087d0a0fde875d771f555067aa03101908987
         document.getElementById("powerValue").innerHTML = otterpower;
     } else if (powerIncrementFlag === false) {
         alert('パウワァが足りません');
@@ -112,8 +136,7 @@ document.getElementById("powerIncrement").addEventListener("click", () => {
 
 // セーブ
 document.getElementById("save").addEventListener("click", () => {
-    localStorage.setItem(playerName, localStorage.setItem(playerName,
-        playerDataJSON));
+    localStorage.setItem(playerName, localStorage.setItem(playerName, playerDataJSON));
 });
 
 // ロード

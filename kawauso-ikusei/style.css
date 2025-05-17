@@ -1,14 +1,19 @@
 @font-face {
-    font-family: 'Best Ten Dot';
-    src: url("fonts/BestTen-DOT.ttf")
+    font-family: 'Madou Futo Maru Goshic';
+    src: url("fonts/madoufmg.ttf")
 }
 
 * {
-    font-family: "Best Ten Dot"
+    font-family: "Madou Futo Maru Goshic";
 }
 
-body {
-    margin: 0
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #eee;
 }
 
 .main__startScreen {
@@ -19,6 +24,7 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     /* 背景を暗くする（透明度調整可能） */
+<<<<<<< HEAD
     padding: 3rem;
     display: flex;
     justify-content: center;
@@ -28,21 +34,42 @@ body {
 
 .main__startScreen__content {
     align-items: center;
+=======
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    z-index: 2000;
+    box-sizing: border-box;
+>>>>>>> 675087d0a0fde875d771f555067aa03101908987
 }
 
 .main__startScreen__content h2,
 .main__startScreen__content p {
     color: #fff;
     font-weight: bold;
+    text-wrap: wrap;
+}
+
+.main__startScreen__content button {
+    margin: 1rem 0;
 }
 
 header {
+    position: fixed;
+    top: 0;
+    /* 上部に固定 */
+    left: 0;
+    width: 100%;
+    height: 160px;
+    z-index: 1000;
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 0;
     background-color: #222;
-    color: #eee
+    color: #eee;
+    justify-content: center;
 }
 
 .header__h1Furigana {
@@ -54,17 +81,22 @@ h1 {
 }
 
 main {
+    height: 100%;
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    background-color: #eee
+    background-color: #eee;
+    padding: calc(160px + 1rem) 2rem calc(100px + 1rem) 2rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .main__contentBlocks {
     margin: 1rem;
     border: #222 4px solid;
     border-radius: 2rem;
-    padding: 1rem
+    padding: 1rem;
+    text-wrap: wrap;
 }
 
 button.clicked {
@@ -76,9 +108,29 @@ button.clicked {
 footer {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     background-color: #222;
-    color: #eee
+    color: #eee;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1000;
+    justify-content: center;
+}
+
+header,
+footer {
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.main__contentBlocks,
+footer button {
+    white-space: nowrap;
 }
 
 button {
@@ -91,4 +143,26 @@ button {
 
 button:hover {
     opacity: 50%
+}
+
+@media screen and (max-width: 959px) {}
+
+@media screen and (max-width: 480px) {
+    .main__startScreen {
+        font-size: 0.8rem;
+    }
+
+    header,
+    footer {
+        padding: 0.5rem 1rem;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .main__contentBlocks {
+        width: calc(100% - 2rem);
+        box-sizing: border-box;
+    }
 }
