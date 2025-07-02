@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マッチ3パズル</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        #info {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+            gap: 2px;
+            background: #222;
+            padding: 5px;
+        }
+
+        .tile {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s;
+        }
+
+        .matched {
+            background: white !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="info">
+        手数: <span id="moves">20</span> | スコア: <span id="score">0</span> | ハイスコア: <span id="high-score">0</span>
+    </div>
+    <div id="game-board"></div>
+
+    <script>
+        const boardSize = 8;
+        const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+        let board = [];
+        let selectedTile = null;
+        let score = 0;
+        let movesLeft = 20;
+        let targetScore = Math.floor(Math.random() * 2000) + 2000; // 2000～4000のランダムスコア
+
+        // ローカルストレージからハイスコアを取得（無ければ 0 にする）
+        let highScore = localStorage.getItem("highScore") ? parseInt(localStorage.getItem("highScore")) : 0;
+        document.getElementById("high-score").innerText = highScore;
+
+        let touchStart = null; // タッチ開始の位置
+
+        function createBoard() {
+            const boardElement = document.getElementById("game-board");
+            boardElement.innerHTML = "";
+            board = [];
+
+            // 盤面を作成
+            for (let row = 0; row < boardSize; row++) {
+                board[row] = [];
+                for (let col = 0; col < boardSize; col++) {
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    board[row][col] = color;
+
+                    const tile = document.createElement("div");
+                    tile.classList.add("tile");
+                    tile.style.background = color;
+                    tile.dataset.row = row;
+                    tile.dataset.col = col;
+                    tile.addEventListener("click", () => selectTile(tile));
+
+                    // タッチイベント
+                    tile.addEventListener("touchstart", handleTouchStart);
+                    tile.addEventListener("touchmove", handleTouchMove);
+                    tile.addEventListener("touchend", handleTouchEnd);
+
+                    boardElement.appendChild(tile);
+                }
+            }
+
+            // 盤面が最初に揃っていないことを確認
+            if (checkInitialMatches()) {
+                createBoard(); // 揃っている場合は再帰的に盤面を再作成
+            }
+        }
+
+        // タッチ開始
+        function handleTouchStart(event) {
+            touchStart = {
+                x: event.touches[0].pageX,
+                y: event.touches[0].pageY
+            };
+        }
+
+        // タッチ移動
+        function handleTouchMove(event) {
+            event.preventDefault(); // デフォルトの動作を無効にしてスクロールなどを防ぐ
+        }
+
+        // タッチ終了
+        function handleTouchEnd(event) {
+            const touchEnd = {
+                x: event.changedTouches[0].pageX,
+                y: event.changedTouches[0].pageY
+            };
+
+            const deltaX = touchEnd.x - touchStart.x;
+            const deltaY = touchEnd.y - touchStart.y;
+
+            const row = parseInt(event.target.dataset.row);
+            const col = parseInt(event.target.dataset.col);
+
+            // スワイプの方向に応じてタイルを交換
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                // 水平スワイプ
+                if (deltaX > 0 && col < boardSize - 1) {
+                    swapTiles(event.target, document.querySelector(`[data-row="${row}"][data-col="${col + 1}"]`));
+                } else if (deltaX < 0 && col > 0) {
+                    swapTiles(event.target, document.querySelector(`[data-row="${row}"][data-col="${col - 1}"]`));
+                }
+            } else {
+                // 垂直スワイプ
+                if (deltaY > 0 && row < boardSize - 1) {
+                    swapTiles(event.target, document.querySelector(`[data-row="${row + 1}"][data-col="${col}"]`));
+                } else if (deltaY < 0 && row > 0) {
+                    swapTiles(event.target, document.querySelector(`[data-row="${row - 1}"][data-col="${col}"]`));
+                }
+            }
+            setTimeout(checkMatches, 300);
+        }
+
+        // クリックでタイルを選択して入れ替え
+        function selectTile(tile) {
+            if (!selectedTile) {
+                selectedTile = tile;
+                tile.style.border = "2px solid #fff"; // 選択したタイルを強調表示
+            } else {
+                if (isAdjacent(selectedTile, tile)) {
+                    swapTiles(selectedTile, tile);
+                    selectedTile.style.border = ""; // 選択解除
+                    selectedTile = null;
+                } else {
+                    selectedTile.style.border = ""; // 選択解除
+                    selectedTile = tile;
+                    tile.style.border = "2px solid #fff"; // 新たに選択
+                }
+            }
+        }
+
+        // 隣接チェック
+        function isAdjacent(tile1, tile2) {
+            const row1 = parseInt(tile1.dataset.row);
+            const col1 = parseInt(tile1.dataset.col);
+            const row2 = parseInt(tile2.dataset.row);
+            const col2 = parseInt(tile2.dataset.col);
+
+            return (Math.abs(row1 - row2) === 1 && col1 === col2) || (Math.abs(col1 - col2) === 1 && row1 === row2);
+        }
+
+        // タイルの交換
+        function swapTiles(tile1, tile2) {
+            const row1 = parseInt(tile1.dataset.row);
+            const col1 = parseInt(tile1.dataset.col);
+            const row2 = parseInt(tile2.dataset.row);
+            const col2 = parseInt(tile2.dataset.col);
+
+            if (Math.abs(row1 - row2) + Math.abs(col1 - col2) === 1) {
+                // タイルを一時的に交換
+                const tempColor = board[row1][col1];
+                board[row1][col1] = board[row2][col2];
+                board[row2][col2] = tempColor;
+
+                tile1.style.background = board[row1][col1];
+                tile2.style.background = board[row2][col2];
+                
+                // 交換後にマッチがあるか確認
+                setTimeout(() => {
+                    movesLeft--;
+                    document.getElementById("moves").innerText = movesLeft;
+                    
+                    if (!checkMatches()) {
+                        // マッチがなかった場合、タイルを元に戻す
+                        board[row2][col2] = board[row1][col1];
+                        board[row1][col1] = tempColor;
+
+                        tile1.style.background = board[row1][col1];
+                        tile2.style.background = board[row2][col2];
+
+                        movesLeft++;
+                        document.getElementById("moves").innerText = movesLeft;
+                    }
+                }, 300);
+            }
+        }
+
+        function checkMatches() {
+            let matches = [];
+            let matched = false;
+
+            for (let row = 0; row < boardSize; row++) {
+                for (let col = 0; col < boardSize - 2; col++) {
+                    let color = board[row][col];
+                    if (color && color === board[row][col + 1] && color === board[row][col + 2]) {
+                        matches.push([row, col], [row, col + 1], [row, col + 2]);
+                    }
+                }
+            }
+
+            for (let col = 0; col < boardSize; col++) {
+                for (let row = 0; row < boardSize - 2; row++) {
+                    let color = board[row][col];
+                    if (color && color === board[row + 1][col] && color === board[row + 2][col]) {
+                        matches.push([row, col], [row + 1, col], [row + 2, col]);
+                    }
+                }
+            }
+
+            if (matches.length > 0) {
+                matched = true;
+                matches.forEach(([row, col]) => {
+                    board[row][col] = null;
+                    document.querySelector(`[data-row="${row}"][data-col="${col}"]`).classList.add("matched");
+                });
+
+                updateScore(matches.length * 10)
+                setTimeout(dropTiles, 300);
+            }
+
+            return matched;
+        }
+
+        function checkInitialMatches() {
+            let matched = false;
+
+            for (let row = 0; row < boardSize; row++) {
+                for (let col = 0; col < boardSize - 2; col++) {
+                    let color = board[row][col];
+                    if (color && color === board[row][col + 1] && color === board[row][col + 2]) {
+                        matched = true;
+                    }
+                }
+            }
+
+            for (let col = 0; col < boardSize; col++) {
+                for (let row = 0; row < boardSize - 2; row++) {
+                    let color = board[row][col];
+                    if (color && color === board[row + 1][col] && color === board[row + 2][col]) {
+                        matched = true;
+                    }
+                }
+            }
+
+            return matched;
+        }
+
+        function dropTiles() {
+            for (let col = 0; col < boardSize; col++) {
+                let emptySpots = 0;
+
+                for (let row = boardSize - 1; row >= 0; row--) {
+                    if (board[row][col] === null) {
+                        emptySpots++;
+                    } else if (emptySpots > 0) {
+                        board[row + emptySpots][col] = board[row][col];
+                        board[row][col] = null;
+                    }
+                }
+
+                for (let row = 0; row < emptySpots; row++) {
+                    board[row][col] = colors[Math.floor(Math.random() * colors.length)];
+                }
+            }
+
+            updateBoard();
+            setTimeout(checkMatches, 300);
+        }
+
+        function updateBoard() {
+            document.querySelectorAll(".tile").forEach(tile => {
+                let row = parseInt(tile.dataset.row);
+                let col = parseInt(tile.dataset.col);
+                tile.style.background = board[row][col] || "white";
+                tile.classList.remove("matched");
+            });
+        }
+        function updateScore(points) {
+            score += points;
+            document.getElementById("score").innerText = score;
+
+            // ハイスコア更新チェック
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem("highScore", highScore);
+                document.getElementById("high-score").innerText = highScore;
+            }
+        }
+
+        function resetGame() {
+            score = 0;
+            movesLeft = 20;
+            document.getElementById("score").innerText = score;
+            document.getElementById("moves").innerText = movesLeft;
+            createBoard();
+        }
+
+        createBoard();
+    </script>
+</body>
+
+</html>

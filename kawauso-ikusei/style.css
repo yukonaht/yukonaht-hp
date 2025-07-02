@@ -4,127 +4,30 @@
 }
 
 * {
+    box-sizing: border-box;
     font-family: "Madou Futo Maru Goshic";
 }
 
-body,
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    box-sizing: border-box;
-    background-color: #eee;
-}
-
-.main__startScreen {
+.sidebar {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: -250px;
+    /* 初期状態では画面外 */
+    width: 250px;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    /* 背景を暗くする（透明度調整可能） */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem;
-    z-index: 2000;
-    box-sizing: border-box;
-}
-
-.main__startScreen__content h2,
-.main__startScreen__content p {
-    color: #fff;
-    font-weight: bold;
-    text-wrap: wrap;
-}
-
-.main__startScreen__content button {
-    margin: 1rem 0;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    /* 上部に固定 */
-    left: 0;
-    width: 100%;
-    height: 160px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin: 0;
-    background-color: #222;
-    color: #eee;
-    justify-content: center;
-}
-
-.header__h1Furigana {
-    font-size: .8rem
-}
-
-h1 {
-    margin: 0
-}
-
-main {
-    height: 100%;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    background-color: #eee;
-    padding: calc(160px + 1rem) 2rem calc(100px + 1rem) 2rem;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-}
-
-.main__contentBlocks {
-    margin: 1rem;
-    border: #222 4px solid;
-    border-radius: 2rem;
+    background-color: #333;
+    color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease-in-out;
     padding: 1rem;
-    text-wrap: wrap;
-}
-
-footer {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-direction: row;
-    justify-content: center;
-    background-color: #222;
-    color: #eee;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    z-index: 1000;
-    justify-content: center;
 }
 
-header,
-footer {
-    padding: 1rem 2rem;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-}
-
-.main__contentBlocks,
-footer button {
-    white-space: nowrap;
-}
-
-button {
-    padding: .5rem;
-    border-radius: 3px;
-    border: 1px solid #222;
-    background-color: #eee;
-    margin: .5rem
-}
-
-button:hover {
-    opacity: 50%
+/* サイドバーを開いた時の状態 */
+.sidebar.open {
+    right: 0;
 }
 
 @media screen and (max-width: 959px) {}

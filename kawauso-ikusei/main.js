@@ -1,185 +1,85 @@
-// 変数を定義する場所
+// Supabaseのセットアップ
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const SUPABASE_URL = "https://ksvdggybgpwfivohbxgn.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzdmRnZ3liZ3B3Zml2b2hieGduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA5NTUwMjYsImV4cCI6MjA1NjUzMTAyNn0.Q69y-106Q-bNmigGR4D431KSjBShR8Rw5_DMAQaKN3U";
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// 変数定義
 let otterpower = 0;
 let playerName = "";
 let powerIncrementFlag = false;
-let dataImport = false;
-let playerData ;
-let playerDataJSON;
-let importPlayerData;
 
-// 端末の傾きを検知する
-window.addEventListener("orientationchange", () => {
-    // 端末の傾きを絶対値で取得する
-    var direction = Math.abs(window.orientation);
-    if (direction == 90) {
-        document.getElementById("startScreen").innerHTML =
-            `<div class="main__startScreen">
-                <div class="main__startScreen__content">
-                    <h2>画面を横向きにしてください</h2>
-                    <video src="rotation-smartphone.mp4" autoplay loop></video>
-                </div>
-            </div>`
-    }
+// プレイヤー名の決定
+playerName = "player" + String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+
+// セットアップ
+document.addEventListener("DOMContentLoaded", async () => {
+    document.getElementById("playerName").innerHTML = playerName;
+    await loadPlayerData();
+    repeatTasks();
 });
 
+async function loadPlayerData() {
+    const { data, error } = await supabase
+        .from("savedata")
+        .select("power, powerIncrementFlag, saved_at")
+        .eq("playerName", playerName)
+        .single();
 
-// startScreen表示
-document.getElementById("startScreen").innerHTML =
-    `<div class="main__startScreen">
-                <div class="main__startScreen__content">
-                    <h2>名前を入力</h2>
-                    <p>ゲームに入ったことがある場合は同じ名前を入力することで読み込むことができます</p>
-                    <input type="text" name="" id="name" />
-                    <br>
-                    <button id="nameSend">完了</button>
-                </div>
-            </div>`;
-// もしプレイヤー名が空だったら名前を"playerxxxx"にする
-playerName = Math.floor(Math.random() * 10000);
-while (playerName.length < 4) {
-    playerName = "0" + playerName;
-}
-playerName = "player" + playerName;
-document.getElementById("name").value = playerName
-
-let stopLoop = false;
-
-document.getElementById("nameSend").addEventListener("click", () => {
-    stopLoop = true;
-    document.getElementById("startScreen").innerHTML = "";
-    if (localStorage.hasOwnProperty(playerName)) {
-        otterpower = importPlayerData.power;
-        powerIncrementFlag = importPlayerData.powerIncrementFlag;
+    if (data) {
+        otterpower = data.power;
+        powerIncrementFlag = data.powerIncrementFlag;
     } else {
         otterpower = 10;
         powerIncrementFlag = false;
     }
-    document.getElementById("name").value = playerName;
-    repeatTasks();
-})
 
-/**
- * 
- */
-async function loopUntilButtonPress() {
-    while (!stopLoop) {
-        await new Promise(resolve => setTimeout(resolve, 500))
-    };
+    document.getElementById("playerName").innerHTML = playerName;                                                                           
 }
 
-loopUntilButtonPress();
+async function savePlayerData() {
+    const { error } = await supabase
+        .from("savedata")
+        .upsert({ playerName, power: otterpower, powerIncrementFlag, saved_at: new Date().toISOString() });
+    if (error) console.error("Save Error:", error);
+}
 
-// 繰り返し処理の並列処理
 async function repeatTasks() {
-    const result = await Promise.all([
-        timeSet(),
-        powerIncrement(),
-        playerDataSet()
-    ]);
+    await Promise.all([timeSet(), powerIncrement(), autoSave()]);
 }
 
-
-// 時間を動かす
 async function timeSet() {
     while (true) {
-        document.getElementById("time").innerHTML = formatDate(new Date());
-        await new Promise(resolve => setTimeout(resolve, 10));
+        document.getElementById("time").innerText = new Date().toLocaleString();
+        await new Promise(resolve => setTimeout(resolve, 1000));
     }
 }
 
-// 獺パウワァの増減
 async function powerIncrement() {
     while (true) {
-        document.getElementById("powerValue").innerHTML = otterpower;
+        document.getElementById("powerValue").innerText = otterpower;
+        if (powerIncrementFlag) otterpower++;
         await new Promise(resolve => setTimeout(resolve, 5000));
-        if (powerIncrementFlag) {
-            otterpower++;
-        };
     }
 }
 
-// プレーヤーデータ作成・読み込み
-async function playerDataSet() {
+async function autoSave() {
     while (true) {
-        if (playerName !== "") {
-            playerData = {
-                power: otterpower,
-                powerIncrementFlag: powerIncrementFlag
-            };
-            playerDataJSON = JSON.stringify(playerData);
-            importPlayerData = JSON.parse(localStorage.getItem(playerName))
-        };
-        await new Promise(resolve => setTimeout(resolve, 10));
-    };
+        await savePlayerData();
+        await new Promise(resolve => setTimeout(resolve, 10000));
+    }
 }
 
-// 獺パウワァを増やすフラグ購入
 document.getElementById("powerIncrement").addEventListener("click", () => {
-    if (otterpower >= 10 && powerIncrementFlag === false) {
+    if (otterpower >= 10 && !powerIncrementFlag) {
         otterpower -= 10;
         powerIncrementFlag = true;
         alert('購入しました');
-        document.getElementById("powerIncrement").innerHTML =
-            `<p>獺パウワァを時間経過で増やす</p>
-            <button>購入済み</button>`;
-        document.getElementById("powerValue").innerHTML = otterpower;
-    } else if (powerIncrementFlag === false) {
-        alert('パウワァが足りません');
+        document.getElementById("powerIncrement").innerHTML = `<p>購入済み</p>`;
     } else {
-        alert('購入済みです');
-    };
-});
-
-// セーブ
-document.getElementById("save").addEventListener("click", () => {
-    localStorage.setItem(playerName, localStorage.setItem(playerName, playerDataJSON));
-});
-
-// ロード
-document.getElementById("road").addEventListener("click", () => {
-    otterpower = importPlayerData.power;
-    powerIncrementFlag = importPlayerData.powerIncrementFlag;
-});
-
-
-/**
- * 日付をyy/mm/dd hh:mm:ssにフォーマットする
- * @param {Date} date フォーマットさせる日付
- * @returns フォーマット済みの日付
- */
-function formatDate(date) {
-    const pad = (num) => String(num).padStart(2, '0');
-    return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
-}
-
-
-// ↓↓一旦置いておく場所
-
-/**
- * 条件が揃ったら resolve 関数を走らせる。
- * Promise や Proxy を使いこなせばもっとスマートに書けるかも
- * @param {Function} conditionCallback resolve が走るための真偽値を返す関数
- * @param {Function} nonresolve 条件が揃うまで実行する関数
- * @param {Function} resolve 条件が揃ったら走る関数
- * @param {Number} intervalMillSecond ポーリング間隔ミリ秒
- */
-function waitAsync(conditionCallback, nonresolve, resolve, intervalMillSecond =
-    100) {
-    if (conditionCallback()) {
-        // 待つまでもなく成立しているパターン用
-        resolve();
-        return;
+        alert(powerIncrementFlag ? '購入済みです' : 'パウワァが足りません');
     }
-    // 条件が成立するまで setInterval でポーリング的なループ
-    const intervalId = setInterval(() => {
-        if (!conditionCallback()) {
-            // 条件関数が false を返した時はループ続行
-            nonresolve();
-            return;
-        }
-        // 条件関数が true を返した時はループ用の interval を消去
-        clearInterval(intervalId);
-        // 条件関数が true を返した時は resolve 関数を実行
-        resolve();
-    }, intervalMillSecond)
-}
+});
+
+document.getElementById("save").addEventListener("click", savePlayerData);

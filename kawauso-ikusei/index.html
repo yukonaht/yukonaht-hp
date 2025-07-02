@@ -17,12 +17,10 @@
         <p class="header__h1Furigana">かわうそいくせい</p>
         <h1>獺育成</h1>
         <p>現在時刻：<span id="time"></span></p>
+        <button id="sidebarToggle">☰ メニュー</button>
     </header>
 
-    <main class="main">
-        <article id="startScreen">
-
-        </article>
+    <main>
         <article class="main__contentBlocks" id="power">
             <h2>獺パウワァ</h2>
             <span id="powerValue"></span>
@@ -36,13 +34,21 @@
         </article>
     </main>
 
-    <footer>
-        <p>名前：<input type="text" id="name"></p>
-        <button id="road">読み込む</button>
-        <button id="save">保存</button>
-    </footer>
+    <aside class="sidebar" id="sidebar">
+        <h2>ユーザー名</h2>
+        <p id="playerName"></p>
+        <button id="nameChange">名前変更</button>
+        <hr>
+        <button id="road">ロード</button>
+        <button id="save">セーブ</button>
+    </aside>
 
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
+    <script>
+        document.getElementById("sidebarToggle").addEventListener("click", function() {
+            document.getElementById("sidebar").classList.toggle("open");
+        });
+    </script>
 </body>
 
 </html>
