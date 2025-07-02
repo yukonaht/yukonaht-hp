@@ -76,7 +76,16 @@ document.getElementById("powerIncrement").addEventListener("click", () => {
         otterpower -= 10;
         powerIncrementFlag = true;
         alert('購入しました');
-        document.getElementById("powerIncrement").innerHTML = `<p>購入済み</p>`;
+        document.getElementById("powerIncrement").innerHTML =
+            `<p>獺パウワァを時間経過で増やす</p>
+<<<<<<< HEAD
+            <button class="clicked">購入済み</button>`;
+=======
+            <button>購入済み</button>`;
+>>>>>>> 675087d0a0fde875d771f555067aa03101908987
+        document.getElementById("powerValue").innerHTML = otterpower;
+    } else if (powerIncrementFlag === false) {
+        alert('パウワァが足りません');
     } else {
         alert(powerIncrementFlag ? '購入済みです' : 'パウワァが足りません');
     }
