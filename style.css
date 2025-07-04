@@ -7,13 +7,14 @@
 }
 
 body {
+    width: strech;
     margin: 0;
     background-color: #cdcdcd;
 }
 
 header {
+    width: strech;
     background-color: #b2ff75;
-    box-shadow: 0 5px 10px;
 }
 
 header ul {
@@ -23,10 +24,6 @@ header ul {
     background-color: #ffbcc0;
     border: none;
     flex-wrap: wrap;
-}
-
-header ul a {
-    font-family: "Klee One", cursive;
 }
 
 header ul:hover {
@@ -60,7 +57,7 @@ footer {
     /* Firefox */
     box-sizing: border-box;
     /* 標準 */
-    width: 100%;
+    width: strech;
     padding: 1em 0;
     box-shadow: 0 -5px 10px;
     background-color: #b2ff75;
