@@ -144,11 +144,11 @@ label input {
     margin: 0 auto;
 }
 
-.flex {
+.header-site {
     display: flex;
 }
 
-.flex a {
+.header-site a {
     display: flex;
     color: #000000;
     text-decoration: none;
@@ -216,18 +216,18 @@ label input {
     border-radius: 10px;
 }
 
-.page-block {
+.nav-page {
     background-color: #ffbcc0;
     display: flex;
     flex-wrap: wrap;
 }
 
-.page-block a {
+.nav-page a {
     text-decoration: none;
     color: #000000;
 }
 
-.page-block:hover {
+.nav-page:hover {
     background-color: #ffbcc0;
 }
 
@@ -263,7 +263,7 @@ label input {
         padding: 1em 0;
     }
 
-    .page-block {
+    .nav-page {
         white-space: nowrap;
     }
 
@@ -289,7 +289,7 @@ label input {
         padding: 1em 0;
     }
 
-    .page-block {
+    .nav-page {
         white-space: nowrap;
     }
 
