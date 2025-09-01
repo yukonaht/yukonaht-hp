@@ -1,0 +1,365 @@
+@import url("https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+/* HTML 要素（名前順） */
+a {
+    color: #ff3399;
+}
+
+a:hover {
+    color: #b2ff75;
+}
+
+a:active {
+    color: #ff3399;
+}
+
+body {
+    margin: 0;
+    background-color: #cdcdcd;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100%;
+}
+
+footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1em 0;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.25);
+    background-color: #b2ff75;
+}
+
+footer p {
+    display: block;
+    text-align: center;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    background-color: #b2ff75;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+header h1 {
+    margin: 0.5rem 0 1rem 0;
+}
+
+h1 {
+    font-family: 'Kiwi Maru', serif;
+    text-align: center;
+    margin: 0.5rem 0;
+    font-size: 2em;
+}
+
+label {
+    display: block;
+}
+
+main {
+    width: auto;
+    margin: 5rem;
+    background-color: #ffffff;
+    padding: 2rem 5rem;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+main h1 {
+    text-align: left;
+}
+
+table {
+    border-spacing: 0;
+    width: auto;
+}
+
+ul {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 0.5em 0 0.5em 1.5em;
+    width: 20em;
+    margin: 0;
+}
+
+ul p {
+    font-weight: bold;
+}
+
+ul li {
+    line-height: 1.5;
+    padding: 0.5em 0;
+}
+
+/* クラス（名前順） */
+.block * {
+    display: block;
+    padding: 0 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.block *:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.circle-icon {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin: 0 20px 0 0;
+    border: 5px solid #ffbcc0;
+    object-fit: cover;
+}
+
+.diary-block {
+    max-width: 100%;
+    padding: 1em;
+    display: flex;
+}
+
+.diary-block a {
+    max-width: 100%;
+    display: flex;
+    color: #000000;
+    text-decoration: none;
+}
+
+.diary-block a:hover {
+    background: #ffffff;
+    opacity: 0.5;
+}
+
+.diary-block object {
+    width: 80%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    max-width: 100%;
+}
+
+.flex-column h2 {
+    margin: 10px 0;
+}
+
+/* .flexbox は無効な display を修正 */
+.flexbox {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.form input {
+    width: 10em;
+}
+
+.formContent table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.formContent th {
+    padding: 0.5em;
+    width: auto;
+    text-align: center;
+    background-color: #ffbcc0;
+}
+
+.formContent td {
+    padding: 0.5em;
+    text-align: center;
+    border: 1px solid #000000;
+}
+
+.header-site a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000000;
+    text-decoration: none;
+}
+
+.img-homepage {
+    padding: 10px;
+}
+
+.inline * {
+    display: inline;
+}
+
+.inline-block * {
+    display: inline-block;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.just {
+    box-sizing: border-box;
+    width: 80%;
+}
+
+.member h4 {
+    display: block;
+    background-color: #ffbcc0;
+    padding: 1em 1.5em;
+    width: 20em;
+    margin-bottom: 0;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+.member ul {
+    background-color: #eeeeee;
+    padding: 0.5em 1em;
+    width: 20em;
+    margin-top: 0;
+    border: none;
+    list-style: none;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.nav-page {
+    background-color: #ffbcc0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 2.5em;
+}
+
+.nav-page a {
+    padding: 0.5em 1em;
+    width: max-content;
+    margin: 0;
+    text-decoration: none;
+    color: #000000;
+    height: 2.5em;
+    background-color: transparent;
+}
+
+.nav-page a:hover {
+    background-color: #ffffff;
+}
+
+.nav-page ul {
+    margin: auto;
+    height: 2.5em;
+}
+
+.nav-page i {
+    font-size: 1em;
+    margin-right: 0.5em;
+}
+
+.not * {
+    text-decoration: none;
+    color: black;
+}
+
+.not *:hover {
+    color: black;
+    opacity: 0.5;
+}
+
+.red {
+    color: #fc3535;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    align-content: flex-start;
+    height: auto;
+}
+
+.tag-list a {
+    width: fit-content;
+    text-decoration: none;
+    color: #ff3399;
+}
+
+.thumbnail {
+    width: auto;
+    height: 7em;
+    border-radius: 10px;
+}
+
+/* YouTube iframe は文字列値を数値/アスペクト比に修正 */
+.youtube {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 16/9;
+    padding: 10px;
+    background-color: #b2ff75;
+    border: 0;
+}
+
+/* ID（名前順） */
+#block {
+    display: block;
+}
+
+#big-header {
+    z-index: 10;
+}
+
+#container {
+    margin: 0 auto;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 720px) {
+    body {
+        width: 100%;
+    }
+
+    footer {
+        padding: 1em 0;
+    }
+
+    .nav-page {
+        white-space: nowrap;
+    }
+
+    main {
+        margin: 35px;
+        padding: 1.5em 2em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    * {
+        font-size-adjust: unset;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    footer {
+        padding: 1em 0;
+    }
+
+    .nav-page {
+        white-space: nowrap;
+    }
+
+    main {
+        margin: 20px;
+        padding: 1.5em 2em;
+    }
+
+    .diary-block {
+        font-size: smaller;
+        margin: 10px 0;
+    }
+}

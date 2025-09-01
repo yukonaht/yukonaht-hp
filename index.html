@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 
     <link rel="shortcut icon" href="icon/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="img/yukonaht-180x180.png" sizes="180x180">
     <link rel="icon" type="image/png" href="img/yukonaht-192x192.png" sizes="192x192">
     <title>yukonaht HP | home</title>
+    <!-- script -->
+    <script src="https://kit.fontawesome.com/fa55a8e55f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -17,33 +19,34 @@
         <nav id="auto-nav">
             <div class="header-site">
                 <a href="./">
-                    <img src="img/yukonaht.png" alt="yukonaht-HP" width="60" height="60" class="img-homepage">
-                    <h1 class="title-middle">yukonaht HP</h1>
+                    <img src="img/yukonaht.png" alt="yukonaht-HP" width="90" height="90" class="img-homepage">
+                    <h1>yukonaht HP</h1>
                 </a>
             </div>
             <div class="nav-page">
                 <a href="./">
-                    <ul>home</ul>
+                    <i class="fa-solid fa-house"></i>
+                    ホーム
                 </a>
                 <a href="./member/">
-                    <ul>member</ul>
-                </a>
-                <a href="./game/">
-                    <ul>JS</ul>
+                    <i class="fa-solid fa-people-group"></i>
+                    メンバー
                 </a>
                 <a href="./blog/">
-                    <ul>blog</ul>
+                    <i class="fa-solid fa-pencil"></i>
+                    ブログ
                 </a>
-                <a>
-                    <ul class="nav-page">|</ul>
-                </a>
+                <p style="padding: 0.5em 1em; margin: 0;">
+                    |
+                </p>
                 <a href="https://www.youtube.com/@yukonaht_music" target="_blank" rel="noopener noreferrer">
-                    <ul>公式Youtube</ul>
+                    <i class="fa-brands fa-youtube"></i>
+                    公式Youtube
                 </a>
             </div>
         </nav>
     </header>
-    <div class="body">
+    <main>
         <p>yukonahtのHPです。</p>
         <p>主に音楽系のコンテンツを上げていきます。</p>
         <p>多目的で使います。どうぞよろしくお願いします。</p>
@@ -54,15 +57,13 @@
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="youtube"></iframe>
-        <h2>ゲーム</h2>
-        <p>JSでゲームを作成途中です。</p>
-        <p>バグとかあるかもしれません。</p>
-        <a href="souketsu-game/" target="_blank" rel="noopener noreferrer">倉頡輸入法ゲーム</a>
-        <a href="kawauso-ikusei/" target="_blank" rel="noopener noreferrer">獺育成ゲーム</a>
-    </div>
+    </main>
     <footer>
-        <p>&copy; yukonaht (2025)</p>
+        <p>&copy; yukonaht 2024</p>
     </footer>
+
+    <!-- script -->
+    <script src="src/navSetup.js" type="module"></script>
 </body>
 
 </html>

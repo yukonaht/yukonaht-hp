@@ -1,40 +1,45 @@
-document.addEventListener("DOMContentLoaded", () => {
+//document.addEventListener("DOMContentLoaded", () => {
     // GitHub Pages のリポジトリパス取得（例: /repo-name/）
     const repoPath = "/" + location.pathname.split("/")[1] + "/";
 
     // 階層の深さを算出（リポジトリ名は除く）
-    const depth = location.pathname
+    // 例: /repo-name/member/ の場合、depth は 1
+    let depth = location.pathname
         .replace(repoPath, "")
         .split("/")
         .filter(s => s !== "")
         .length - 1;
 
+    if (depth <= 0) {
+        // ルートディレクトリの場合
+        depth = 0;
+    }
+
     // 相対パスを生成（例: "../", "../../", ""）
     const base = "../".repeat(depth);
 
-    // ナビゲーション項目（hrefはリポジトリルート基準）
+    // ナビゲーション項目
     const navItems = [
         { label: "home", path: "" },
         { label: "member", path: "member/" },
-        { label: "JS", path: "game/" },
         { label: "blog", path: "blog/" },
         { label: "|", path: null },
         { label: "公式Youtube", path: "https://www.youtube.com/@yukonaht_music", external: true }
     ];
 
     // <div class="nav-page"> を取得
-    const navContainer = document.querySelector(".nav-page");
+    const navContainer = document.querySelector("#auto-nav .nav-page");
     if (!navContainer) return;
 
-    // 中身を空に
+    // 中身を空に（header-site は navContainer の外なので残る）
     navContainer.innerHTML = "";
 
-    // 要素を追加
+    // ナビ項目を追加
     navItems.forEach(item => {
         const a = document.createElement("a");
 
-        // 区切り線「|」の場合
         if (item.label === "|") {
+            // 区切り線
             const ul = document.createElement("ul");
             ul.className = "nav-page";
             ul.textContent = "|";
@@ -43,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // 外部リンクかどうか
+        // リンク設定
         if (item.external) {
             a.href = item.path;
             a.target = "_blank";
@@ -54,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const ul = document.createElement("ul");
         ul.textContent = item.label;
-
         a.appendChild(ul);
+
         navContainer.appendChild(a);
     });
 });
