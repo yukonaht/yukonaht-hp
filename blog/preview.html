@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../css/preview.css" type="text/css" />
+    <link rel="stylesheet" href="../css/header.css" type="text/css" />
+    <!-- icon -->
+    <link rel="shortcut icon" href="../icon/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../img/yukonaht-180x180.png" sizes="180x180" />
+    <link rel="icon" type="image/png" href="../img/yukonaht-192x192.png" sizes="192x192" />
+    <title>yukonaht HP | blog</title>
+    <!-- script -->
+    <script src="https://kit.fontawesome.com/fa55a8e55f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gray-matter@4.0.3/dist/gray-matter.min.js"></script>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+</head>
+
+<body>
+    <header id="big-header">
+        <nav id="auto-nav">
+            <div class="header-site">
+                <a href="../">
+                    <img src="../img/yukonaht.png" alt="yukonaht-HP" width="90" height="90" class="img-homepage">
+                    <h1>yukonaht HP</h1>
+                </a>
+            </div>
+            <div class="nav-page">
+                <a href="../">
+                    <i class="fa-solid fa-house"></i>
+                    ホーム
+                </a>
+                <a href="../member/">
+                    <i class="fa-solid fa-people-group"></i>
+                    メンバー
+                </a>
+                <a href="../blog/">
+                    <i class="fa-solid fa-pencil"></i>
+                    ブログ
+                </a>
+                <p style="padding: 0.5em 1em; margin: 0;">
+                    |
+                </p>
+                <a href="https://www.youtube.com/@yukonaht_music" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-youtube"></i>
+                    公式Youtube
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="content">Loading...</div>
+        <hr>
+        <a href="../blog">一覧へ</a>
+    </main>
+    <footer>
+        <p>&copy; yukonaht 2024</p>
+    </footer>
+
+    <!-- script -->
+    <script src="../src/navSetup.js" type="module"></script>
+    <script src="../src/header.js" type="module"></script>
+    <script>
+        async function loadMarkdown() {
+            const params = new URLSearchParams(window.location.search);
+            const file = params.get("file");
+            if (!file) {
+                document.getElementById("content").innerText = "表示するファイルが指定されていません。";
+                return;
+            }
+
+            try {
+                const res = await fetch("posts/" + file);
+                if (!res.ok) throw new Error("サーバーから読み込めませんでした: " + file);
+                let text = await res.text();
+
+                // Front Matter を削除
+                let frontMatter = {};
+                if (text.startsWith("---")) {
+                    const end = text.indexOf("\n---", 3);
+                    if (end !== -1) {
+                        const fmText = text.slice(3, end + 1).trim();
+                        text = text.slice(end + 5);
+                        fmText.split("\n").forEach(line => {
+                            const idx = line.indexOf(":");
+                            if (idx !== -1) {
+                                const key = line.slice(0, idx).trim();
+                                let value = line.slice(idx + 1).trim();
+                                if (value.startsWith("[") && value.endsWith("]")) {
+                                    value = value.slice(1, -1).split(",").map(s => s.trim());
+                                }
+                                frontMatter[key] = value;
+                            }
+                        });
+                    }
+                }
+
+                const container = document.getElementById("content");
+                container.innerHTML = "";
+
+                const pageTop = document.createElement("div");
+                pageTop.className = "page-top";
+
+                // サムネイル
+                if (frontMatter.thumb) {
+                    const img = document.createElement("img");
+                    img.src = frontMatter.thumb;
+                    img.alt = "サムネイル画像";
+                    img.className = "thumb";
+                    pageTop.appendChild(img);
+                }
+
+                // タイトル
+                if (frontMatter.title) {
+                    const h1 = document.createElement("h1");
+                    h1.textContent = frontMatter.title;
+                    pageTop.appendChild(h1);
+                }
+
+                // 日付
+                if (frontMatter.date) {
+                    const date = document.createElement("span");
+                    date.textContent = frontMatter.date.replace(/-/g, ".");
+                    date.className = "date";
+                    pageTop.appendChild(date);
+                }
+
+                // タグ
+                if (Array.isArray(frontMatter.tags)) {
+                    const tagDiv = document.createElement("div");
+                    tagDiv.className = "tags";
+                    frontMatter.tags.forEach(tag => {
+                        const span = document.createElement("span");
+                        span.textContent = "#" + tag;
+                        span.className = "tag";
+                        span.addEventListener("click", () => {
+                            window.location.href = "index.html?tag=" + encodeURIComponent(tag);
+                        });
+                        tagDiv.appendChild(span);
+                    });
+                    pageTop.appendChild(tagDiv);
+                }
+
+                container.appendChild(pageTop);
+                container.appendChild(document.createElement("hr"));
+
+                const renderer = {
+                    code(...args) {
+                        let token = typeof args[0] === "string"
+                            ? { text: args[0], lang: (args[1] || "").trim() }
+                            : (args[0] || { text: "", lang: "" });
+
+                        // "html:index.html" → language / filename
+                        const info = (token.lang || "").trim();
+                        let [language, filename = ""] = info.split(":");
+                        language = (language || "").trim();
+                        filename = filename.trim();
+
+                        // ファイル名が無いときは言語名をラベルにする
+                        const label = filename || language;
+
+                        // ハイライト or エスケープ
+                        let html;
+                        if (window.hljs) {
+                            if (language && hljs.getLanguage(language)) {
+                                html = hljs.highlight(token.text, { language }).value;
+                            } else {
+                                html = hljs.highlightAuto(token.text).value;
+                            }
+                        } else {
+                            html = escapeHtml(token.text);
+                        }
+
+                        return `
+      <div class="code-block">
+        ${label ? `<div class="code-filename">${label}</div>` : ""}
+        <pre><code class="language-${language}">${html}</code></pre>
+      </div>
+    `;
+                    }
+                };
+
+                marked.use({ renderer });
+
+                // Markdown 本文
+                const mdDiv = document.createElement("div");
+                mdDiv.innerHTML = marked.parse(text);
+                container.appendChild(mdDiv);
+
+            } catch (e) {
+                document.getElementById("content").innerHTML =
+                    `<p style="color:red;">記事を読み込めませんでした (${file})</p><p>詳細: ${e.message}</p>`;
+            }
+
+            // エスケープ
+            function escapeHtml(s) {
+                return String(s)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+            }
+        }
+
+        loadMarkdown();
+    </script>
+
+</body>
+
+</html>

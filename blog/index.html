@@ -4,75 +4,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../style.css" type="text/css" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
     <link rel="shortcut icon" href="../icon/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="../img/yukonaht-180x180.png" sizes="180x180" />
     <link rel="icon" type="image/png" href="../img/yukonaht-192x192.png" sizes="192x192" />
-    <title>yukonaht HP | home</title>
+    <title>yukonaht HP | blog</title>
+    <!-- script -->
+    <script src="https://kit.fontawesome.com/fa55a8e55f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header>
-        <div class="flex">
-            <a href="../yukonaht-HP-home.html">
-                <img src="../img/yukonaht.png" alt="yukonaht-HP" width="60" height="60" class="img-homepage" />
-                <h1 class="title-middle">yukonaht HP</h1>
-            </a>
-        </div>
-        <div class="nav-page">
-            <a href="../yukonaht-HP-home.html">
-                <ul>home</ul>
-            </a>
-            <a href="../yukonaht-HP-member.html">
-                <ul>
-                    member
-                </ul>
-            </a>
-            <a href="../yukonaht-HP-JS.html">
-                <ul>
-                    JS
-                </ul>
-            </a>
-            <a href="yukonaht-HP-blog.html">
-                <ul>
-                    blog
-                </ul>
-            </a>
-            <a>
-                <ul class="nav-page">
+    <header id="big-header">
+        <nav id="auto-nav">
+            <div class="header-site">
+                <a href="../">
+                    <img src="../img/yukonaht.png" alt="yukonaht-HP" width="90" height="90" class="img-homepage">
+                    <h1>yukonaht HP</h1>
+                </a>
+            </div>
+            <div class="nav-page">
+                <a href="../">
+                    <i class="fa-solid fa-house"></i>
+                    ホーム
+                </a>
+                <a href="../member/">
+                    <i class="fa-solid fa-people-group"></i>
+                    メンバー
+                </a>
+                <a href="../blog/">
+                    <i class="fa-solid fa-pencil"></i>
+                    ブログ
+                </a>
+                <p style="padding: 0.5em 1em; margin: 0;">
                     |
-                </ul>
-            </a>
-            <a href="https://www.youtube.com/@yukonaht_music" target="_blank" rel="noopener noreferrer">
-                <ul>
+                </p>
+                <a href="https://www.youtube.com/@yukonaht_music" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-youtube"></i>
                     公式Youtube
-                </ul>
-            </a>
-        </div>
+                </a>
+            </div>
+        </nav>
     </header>
-    <div class="body">
+    <main>
         <h1>ブログ</h1>
-        <p>音楽・プログラミング・日常などからブログを上げていきます。</p>
-        <div class="diary-block">
-            <a href="blog-2024-08-29.html">
-                <img src="../thumbnail.png" alt="サムネ" class="thumbnail">
+        <p>様々なジャンルについてのブログを書いていきます。</p>
+        <div id="list"></div>
+    </main>
+    <footer>
+        <p>&copy; yukonaht 2024</p>
+    </footer>
+
+    <!-- script -->
+    <script src="../src/navSetup.js" type="module"></script>
+
+    <script>
+        let allPosts = []; // 元のすべての投稿（変更しない）
+        const list = document.getElementById("list");
+        const requestTag = new URLSearchParams(window.location.search).get("tag");
+
+        // 投稿一覧を描画する関数
+        function renderPosts(posts) {
+            list.innerHTML = "";
+            const infoP = document.createElement("p");
+            if (requestTag) {
+                infoP.innerHTML = `現在「#${requestTag}」のタグで絞り込んでいます。 <a href="./">一覧を表示</a>`;
+            } else {
+                infoP.textContent = "すべての投稿を表示しています。";
+            }
+            list.appendChild(infoP);
+
+            if (!posts || posts.length === 0) {
+                const none = document.createElement("p");
+                none.textContent = "投稿が見つかりません。";
+                list.appendChild(none);
+                return;
+            }
+
+            posts.forEach(post => {
+                const div = document.createElement("div");
+                div.className = "diary-block";
+                const tagsHtml = (Array.isArray(post.tags) ? post.tags : []).map(tag => `<a href="#" class="tag-link" data-tag="${tag}">#${tag}</a>`).join(" ");
+                div.innerHTML = `
+            <a href="preview.html?file=${encodeURIComponent(post.file || '')}">
+                <img src="${post.thumb || ''}" alt="サムネ" class="thumbnail">
                 <object>
                     <div class="flex-column">
-                        <h2>VSCodeについて言いたいこと</h2>
-                        <a>2024.08.29</a>
-                        <div class="flex">
-                            <a href="blog-blog.html">#blog</a>　
-                            <a href="blog-talus.html">#talus</a>
+                        <h2 style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1;">${post.title || ''}</h2>
+                        <a class="date">${(post.date || '').replace(/-/g, ".")}</a>
+                        <div class="tag-list">
+                          ${tagsHtml}
                         </div>
                     </div>
                 </object>
             </a>
-        </div>
-    </div>
-    <footer>
-        <p>Copyright yukonaht 2024</p>
-    </footer>
+          `;
+                list.appendChild(div);
+            });
+
+            // タグにクリックイベントを追加（allPosts を基準にフィルタ）
+            const tagLinks = list.querySelectorAll(".tag-link");
+            tagLinks.forEach(link => {
+                link.addEventListener("click", e => {
+                    e.preventDefault();
+                    const tag = link.dataset.tag;
+                    const filtered = allPosts.filter(p => Array.isArray(p.tags) && p.tags.includes(tag));
+                    window.location.search = `?tag=${encodeURIComponent(tag)}`;
+                    renderPosts(filtered);
+                });
+            });
+        }
+
+        // JSON 読み込み
+        fetch("posts.json")
+            .then(r => r.json())
+            .then(posts => {
+                allPosts = Array.isArray(posts) ? posts : [];
+                const displayed = requestTag ? allPosts.filter(p => Array.isArray(p.tags) && p.tags.includes(requestTag)) : allPosts;
+                renderPosts(displayed);
+            })
+            .catch(err => {
+                list.innerHTML = "<p>投稿の読み込みに失敗しました。</p>";
+                console.error(err);
+            });
+    </script>
 </body>
 
 </html>
