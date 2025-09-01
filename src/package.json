@@ -1,0 +1,25 @@
+{
+  "name": "yukonaht-hp",
+  "version": "1.0.0",
+  "main": "build.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talus-yujiro/yukonaht-hp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/talus-yujiro/yukonaht-hp/issues"
+  },
+  "homepage": "https://github.com/talus-yujiro/yukonaht-hp#readme",
+  "description": "",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^16.1.2"
+  }
+}
